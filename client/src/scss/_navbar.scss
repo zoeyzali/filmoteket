@@ -1,0 +1,55 @@
+.navbar-main {
+  display: flex;
+  justify-content: center;
+  color: #020101de;
+
+  .navbar-brand {
+    font-family: 'Questrial',
+      sans-serif;
+
+    .logo {
+      width: 110px;
+      height: 80px;
+    }
+  }
+
+  .collapse .navbar-collapse {
+    background-color: transparent;
+  }
+
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem;
+    font-size: 15px;
+    border: none !important;
+    outline: none;
+    // border-radius: 0.2rem;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+
+    &.active {
+      text-decoration: underline;
+      text-decoration-color: crimson;
+    }
+  }
+
+  li.log-out {
+    background-color: crimson;
+    border-radius: 0.2rem;
+  }
+
+  .login-btn,
+  .reg-btn {
+    color: #020101de;
+    text-transform: uppercase;
+  }
+}
+
+// .navbar-nav {
+//   li.nav-item {
+//     background-color: crimson;
+//   }
+// }

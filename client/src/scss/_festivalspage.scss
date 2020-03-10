@@ -1,0 +1,36 @@
+.festivals-page {
+  background-image: url("../images/festivalDeCannes.png"), url("../images/berlinale.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Alegreya',
+    sans-serif;
+}
+
+.img-fluid {
+  width: 250px;
+  height: auto;
+}
+
+.content-wrapper {
+  background-color: #eee;
+  color: black;
+  padding: 10px;
+}
+
+.Cannes-container,
+.Berlinale {
+  h1 {
+    color: crimson;
+    text-align: center;
+    font-size: 6rem;
+    letter-spacing: -2px;
+  }
+
+
+  @media (min-width: 320px) and (max-width: 425px) {
+    h1 {
+      font-size: 3rem;
+      word-wrap: break-word;
+    }
+  }
+}

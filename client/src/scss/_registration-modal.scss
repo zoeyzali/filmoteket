@@ -1,0 +1,25 @@
+.modal {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  opacity: 0.95;
+
+  .modal-header {
+    background-color: crimson;
+    text-align: center;
+  }
+
+  .btn-row {
+    text-align: center;
+  }
+
+  // button.login-btn {
+  //   align-items: center;
+  // }
+
+  // .submit-btn {
+  //   align-self: center;
+  // }
+}

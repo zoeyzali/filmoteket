@@ -3,3 +3,15 @@
 
 # Ada Library Information
 *.ali
+.DS_Store
+node_modules 
+.env
+.env.development
+
+connectionString.js
+nodemon.json
+.vscode
+
+client/node_modules
+client/json/films.json
+client/src/scss/bootstrap

@@ -1,0 +1,122 @@
+.start-page {
+  width: 100%;
+  font-family: 'Alegreya', sans-serif;
+  // display: flex;
+  // flex-wrap: wrap;
+
+  .jumbotron {
+    width: 100%;
+    background-color: #fff;
+    background-image: url('../images/festivalDeCannes.png'), url('../images/berlinale.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #db2d43;
+    font-weight: 900;
+
+    h1 {
+      font-size: 6rem;
+    }
+
+    .lead {
+      font-size: 1.8rem;
+    }
+
+    .btn {
+      color: #db2d43;
+      width: 25%;
+      margin: auto;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.carousel-container {
+  margin-top: 15px;
+  // width: 100%;
+
+  .carousel-slider {
+    background-color: rgb(245, 243, 243);
+    // z-index: 4;
+
+    .carousel-img {
+      // width: 0;
+      mask-image: cross-fade();
+      border-radius: 5px;
+    }
+
+    button.slick-arrow .slick-next .slick-next::before,
+    .slick-prev:before,
+    .slick-next:before {
+      color: #333;
+      font-size: 25px;
+    }
+  }
+
+  // .red-box {
+  //   position: absolute;
+  //   background-color: var(--mainWhite);
+  //   height: 400px;
+  //   transform: translateY(-70%);
+
+  //   &.overlay {
+  //     position: relative;
+  //     z-index: 7;
+  //     background-color: maroon;
+  //     mix-blend-mode: overlay;
+  //   }
+  // }
+
+
+  .mock-content {
+    background-color: crimson;
+    display: inline;
+  }
+
+  .search-box {
+    margin-top: 2rem;
+    font-family: 'Questrial', sans-serif;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 10px 0;
+    border: 1px #333 solid;
+  }
+
+  .desc-text {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 508px) {
+
+  img .carousel-img .slick-slide,
+  .carousel-slider,
+  .slick-track {
+    // width: 100px;
+    display: inline;
+    overflow: hidden;
+    opacity: 1;
+  }
+
+  h1 {
+    font-size: 3rem;
+    word-wrap: break-word;
+  }
+
+  // .carousel-slider {
+  //   img .carousel-img {
+  //     height: 100px;
+  //     width: 20%;
+  //   }
+  // }
+}
+
+
+// #fdda16
+// #ff9000 orange-ish
+//background-color: #ff9000
+
+// a {
+//   color: crimson;
+//   list-style: none;
+//   font-size: 16px;
+// }
