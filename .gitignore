@@ -14,5 +14,4 @@ nodemon.json
 .vscode
 
 client/node_modules
-client/json/films.json
 client/src/scss/bootstrap
