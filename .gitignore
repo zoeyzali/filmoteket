@@ -15,3 +15,5 @@ nodemon.json
 
 client/node_modules
 client/src/scss/bootstrap
+client/src/json/films.json
+client/src/utils/api-request.js
