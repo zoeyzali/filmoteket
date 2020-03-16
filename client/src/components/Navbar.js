@@ -1,38 +1,22 @@
 import React, { Component } from 'react'
-import { withRouter, Link, NavLink } from "react-router-dom"
-import {
-    Collapse, Navbar, NavbarToggler, Nav, NavItem
-} from 'reactstrap'
+import { Link, NavLink } from "react-router-dom"
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
 import logo from '../images/filmkollenLogo.png'
 import Login from './LoginPage'
 import Registration from './Registration'
+import { UserContext } from '../context/UserContext'
+
 
 
 class AppNavbar extends Component {
     constructor( props ) {
-        super( props );
+        super( props )
         this.state = {
             isOpen: false,
             visible: false,
-            loggedIn: false,
         }
     }
-
-    menu = ( userData ) => {
-        if ( userData !== this.state.user ) {
-            this.setState( {
-                user: userData
-            } )
-            // console.log( userData, 'sup data' )
-        }
-    }
-
-    logOut = ( e ) => {
-        e.preventDefault()
-        localStorage.removeItem( 'token' )
-        this.props.history.push( '/' )
-        console.log( localStorage )
-    }
+    static contextType = UserContext
 
 
     toggle = () => {
@@ -42,9 +26,11 @@ class AppNavbar extends Component {
     }
 
     render() {
+        const { user, logOutUser } = this.context
+
         const loginRegLink = (
             <ul className="navbar-nav mx-auto">
-                <li className="nav-item login-btn">
+                <li className="nav-item">
                     <Login />
                 </li>
                 <li className="nav-item">
@@ -55,14 +41,9 @@ class AppNavbar extends Component {
         const userLink = (
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <Link to="/users/profile" className="nav-link">
+                    <Link to="/profile" className="nav-link">
                         Profile
-          </Link>
-                </li>
-                <li className="nav-item log-out">
-                    <Link to="/" onClick={this.logOut} className="nav-link">
-                        Logout
-          </Link>
+                    </Link>
                 </li>
             </ul>
         )
@@ -70,33 +51,43 @@ class AppNavbar extends Component {
         return (
             <div>
                 <Navbar className="navbar-main" light expand="lg">
-                    <div href="/" className="navbar-brand">
-                        <img src={logo} alt={logo} className="logo" />
-                        filmkollen</div>
+                    <a href="/" className="navbar-brand">
+                        <img src={logo} alt={logo} className="logo"
+                        />
+                        filmkollen</a>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink className="nav-link" exact to="/">Home</NavLink>
+                                <NavLink className="nav-link"
+                                    exact to="/">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to="/films">Films</NavLink>
+                                <NavLink className="nav-link"
+                                    to="/films">Films</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to="/festivals">Festivals</NavLink>
+                                <NavLink className="nav-link"
+                                    to="/festivals">Festivals</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to="/contact">Contact</NavLink>
+                                <NavLink className="nav-link"
+                                    to="/contact">Contact</NavLink>
                             </NavItem>
 
-                            {localStorage.token ? userLink : loginRegLink}
+                            {user ? userLink : loginRegLink}
+
+                            <li className="nav-item logout-btn">
+                                <Link to="/" onClick={logOutUser} className="nav-link">
+                                    Logout
+                                </Link>
+                            </li>
                         </Nav>
                     </Collapse>
                 </Navbar>
             </div>
-        );
-
+        )
     }
 }
 
-export default withRouter( AppNavbar );
+export default AppNavbar 

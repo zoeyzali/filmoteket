@@ -1,11 +1,14 @@
 .navbar-main {
   display: flex;
   justify-content: center;
+  align-items: center;
   color: #020101de;
 
   .navbar-brand {
     font-family: 'Questrial',
       sans-serif;
+    font-weight: 900;
+    letter-spacing: 1.8px;
 
     .logo {
       width: 110px;
@@ -25,7 +28,7 @@
     // border-radius: 0.2rem;
   }
 
-  .nav-link {
+  a.nav-link {
     font-size: 14px;
     text-align: center;
     font-weight: 600;
@@ -36,20 +39,19 @@
     }
   }
 
-  li.log-out {
+  li.logout-btn {
     background-color: crimson;
     border-radius: 0.2rem;
-  }
-
-  .login-btn,
-  .reg-btn {
-    color: #020101de;
     text-transform: uppercase;
+    color: #fff;
   }
 }
 
-// .navbar-nav {
-//   li.nav-item {
-//     background-color: crimson;
-//   }
-// }
+.navbar-nav {
+  Button.nav-link {
+    background-color: #eee;
+    padding: 6px 7px;
+    border-radius: 0.2rem;
+
+  }
+}

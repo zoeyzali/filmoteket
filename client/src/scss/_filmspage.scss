@@ -1,44 +1,51 @@
-.films-page{
-    background-color: whitesmoke;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
-    width: 100%;
+.films-page {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  // background-color: #eee;
 
-  div.header{
-    justify-content: center;
+  .films-header {
+    align-items: center;
+    margin: 0 auto;
+
+    h1 {
+      font-family: 'Alegreya', sans-serif;
+      font-weight: 900;
+      text-align: center;
+      font-size: 3.5rem;
+      letter-spacing: -0.5px;
+      color: var(--dark);
+
+    }
+
+    .films-logo-wrapper {
+      text-align: center;
+
+      .img-fluid-logo {
+        width: 100px;
+        height: auto;
+      }
+    }
   }
-  
-h1, h2, h3{
-  font-weight: 200;
-  text-align: center;
-  position: relative;
-}
-h5{
-  font-size: 15px;
-}
-}
 
-.img-fluid-logo{
-  width: 100px;
-  height: auto;
-  top: 10%;
-  left: 45%;
-  position: relative;
-  
-}
+  img.posters {
+    display: block;
+    width: 185px;
+    height: 250px;
+    border-radius: 0.2rem;
+    filter: contrast(120%);
+    transition: border .1s linear;
 
-img.posters{
-  display: block;
-  width: 185px;
-  height: 250px;
-  border-radius: 4px;
-  transition: border .1s linear;
-  :hover{
-  opacity: 0.8;
-}
-}
 
-.films-row{
-  padding: 5px;
-  color: black;
+    // &:hover {
+    //   mix-blend-mode: lighten;
+    // }
+  }
+
+  .films-row,
+  .filmslist-wrapper {
+    padding: 3px;
+  }
 }

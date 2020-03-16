@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-// import { Container } from 'reactstrap';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { Component } from 'react'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 class CarouselSlider extends Component {
     render() {
@@ -13,7 +12,27 @@ class CarouselSlider extends Component {
             focusOnSelect: true,
             fade: true,
             speed: 100,
-            slidesToScroll: 3
+            cssEase: 'linear',
+            slidesToScroll: 4,
+            slidesToShow: 1,
+            mobileFirst: true,
+            adaptiveHeight: true,
+            responsive: [
+                {
+                    breakpoint: 425,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 320,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
         };
         return (
             <div className="carousel-container">
@@ -21,10 +40,11 @@ class CarouselSlider extends Component {
                     className="carousel-slider mx-auto">
                     <Slider {...settings}>
                         <img src={require( '../images/blueisthewarmestcolor.jpg' )} className="carousel-img img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/thewhiteribbonSlides.jpg' )} className="carousel-img img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/amourSlide.jpg' )}
+                        <img src={require( '../images/tree-of-life-still.jpeg' )} className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/melancholia-148.jpg' )}
                             className="carousel-img  img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/pulpfictionSlides.jpg' )} className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/mommy-still.png' )} className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/oslo-31-aug.png' )} className="carousel-img img-fluid" alt="sliderposter" />
                     </Slider>
                 </div>
                 <div className="red-box"></div>

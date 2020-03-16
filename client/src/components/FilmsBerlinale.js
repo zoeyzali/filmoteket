@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import Pagination from './Pagination'
-// import FilmDetails from './FilmDetails';
-
+import { tmdbKey } from '../utils/api-request'
 
 class FilmsBerlinale extends Component {
     constructor( props ) {
@@ -17,11 +16,10 @@ class FilmsBerlinale extends Component {
     }
 
     getFilmsBer = () => {
-        const api_key = process.env.REACT_APP_API_KEY
-        fetch( `https://api.themoviedb.org/4/list/112863?api_key=${api_key}` )
+        // const tmdbKey = process.env.REACT_APP_TMDB_KEY
+        fetch( `https://api.themoviedb.org/4/list/112863?api_key=${tmdbKey}` )
             .then( data => data.json() )
             .then( data => {
-                // console.log( data, 'film data' )
                 this.setState( {
                     filmsBer: [...data.results],
                     totalResults: data.total_results,
@@ -33,11 +31,10 @@ class FilmsBerlinale extends Component {
             } )
     }
 
-    nextPage = ( pageNumber, api_key ) => {
-        fetch( `https://api.themoviedb.org/4/list/112863?api_key=${api_key}&page=${pageNumber}` )
+    nextPage = ( pageNumber ) => {
+        fetch( `https://api.themoviedb.org/4/list/112863?api_key=${tmdbKey}&page=${pageNumber}` )
             .then( data => data.json() )
             .then( data => {
-                // console.log( data, 'berlinale-page2' )
                 this.setState( {
                     filmsBer: [...data.results],
                     currentPage: pageNumber,
@@ -58,10 +55,10 @@ class FilmsBerlinale extends Component {
     mapFilms = () => {
         const mappedFilms = this.state.filmsBer.map( ( film, id ) => {
             return (
-                <Col key={id} xs={2} md={2} lg={2} className="films-row">
+                <Col key={id} xs={3} sm={2} md={2} lg={2} className="films-row">
                     <Link to="#" onClick={() => this.viewFilmInfo( this.filmId )}>
                         <img src={`https://image.tmdb.org/t/p/w185/${film.poster_path}`
-                        } className="posters img-fluid" alt="film-poster" />
+                        } className="img-fluid" alt={film.title} />
                     </Link>
                 </Col>
             )
@@ -69,21 +66,21 @@ class FilmsBerlinale extends Component {
         return mappedFilms
     }
 
-    // componentDidMount() {
-    //   this.getFilmsBer()
-    // }
+    componentDidMount() {
+        this.getFilmsBer()
+    }
 
     render() {
-        const numberOfPages = Math.floor( this.state.totalResults / 20 );
+        const numberOfPages = Math.floor( this.state.totalResults / 20 )
         return (
             <>
                 <Row>
                     {this.mapFilms()}
                 </Row>
+
                 <Row>
-                    <Col xs="6" sm="4" md="3" lg="3" className="header">
-                        {this.state.totalResults > 20 ? <Pagination pages={numberOfPages} nextPage={this.nextPage} currentPage={this.state.currentPage} /> : ""}
-                    </Col>
+                    {this.state.totalResults > 20 ? <Pagination pages={numberOfPages} nextPage={this.nextPage} currentPage={this.state.currentPage} /> : ""}
+
                 </Row>
                 {/* { this.state.currentFilm === null ? this.state.currentFilm : <FilmDetails currentFilm={this.state.currentFilm} closeFilmInfo={this.closeFilmInfo} /> } */}
             </>
