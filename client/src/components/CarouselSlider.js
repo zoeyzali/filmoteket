@@ -39,12 +39,16 @@ class CarouselSlider extends Component {
                 <div
                     className="carousel-slider mx-auto">
                     <Slider {...settings}>
-                        <img src={require( '../images/blueisthewarmestcolor.jpg' )} className="carousel-img img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/tree-of-life-still.jpeg' )} className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/blueisthewarmestcolor.jpg' )}
+                            className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/tree-of-life-still.jpeg' )}
+                            className="carousel-img img-fluid" alt="sliderposter" />
                         <img src={require( '../images/melancholia-148.jpg' )}
                             className="carousel-img  img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/mommy-still.png' )} className="carousel-img img-fluid" alt="sliderposter" />
-                        <img src={require( '../images/oslo-31-aug.png' )} className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/mommy-still.png' )}
+                            className="carousel-img img-fluid" alt="sliderposter" />
+                        <img src={require( '../images/oslo-31-aug.png' )}
+                            className="carousel-img img-fluid" alt="sliderposter" />
                     </Slider>
                 </div>
                 <div className="red-box"></div>
