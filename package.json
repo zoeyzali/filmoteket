@@ -1,8 +1,8 @@
 {
-  "name": "nodejs-mongodb-react",
+  "name": "mern-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "nodejs login with jwt token",
+  "description": "mern-tmdbApi",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

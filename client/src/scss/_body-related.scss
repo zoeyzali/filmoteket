@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  min-height: 0;
+  min-width: 0;
 }
 
 body {
@@ -15,7 +17,6 @@ body {
     sans-serif;
   font-weight: 400;
   background-color: #fff;
-  // overflow: hidden;
 
   main {
     flex: 1;
@@ -28,18 +29,76 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   .contact-wrapper {
+    width: 100%;
+    padding: 20px 0;
+
     .contact-form {
+      width: 50%;
+
+      label {
+        font-size: large;
+        font-family: 'Questrial', sans-serif;
+        font-weight: 600;
+      }
 
       input,
       textarea {
-        font-size: 13px;
-        width: 80%;
-        padding: 10px 5px;
-
+        font-size: 14px;
+        padding: 20px 10px;
+        outline: none;
+        text-align: center;
       }
     }
   }
+}
+
+
+.search-wrapper {
+  padding: 15px 3px;
+  background-color: rgb(224, 224, 224);
+
+  .search-list {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-inner {
+    padding: 3px;
+
+    img.img-fluid {
+      display: block;
+      width: 185px;
+      height: 230px;
+      border-radius: 0.4rem;
+      filter: contrast(120%);
+      transition: border .1s linear;
+
+    }
+  }
+}
+
+.search-details {
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  .img-secondary {
+    max-width: 400px;
+    display: inline-flex;
+  }
+
+  .film-description {
+    font-size: 15px;
+  }
+}
+
+button,
+Button {
+  outline: none !important;
 }

@@ -1,85 +1,39 @@
 import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap'
-// import axios from 'axios'
-import { getProfile } from '../components/UserFunctions'
 import './LoginPage'
+import profileImg from '../images/mr-robot.png'
+import { UserContext } from '../context/UserContext'
 
 class Profile extends Component {
-    constructor( props ) {
-        super( props )
-        this.state = {
-            isLoading: true,
-            token: '',
-            users: [],
-        }
-    }
-
-
-    getUserProfile = () => {
-        getProfile()
-            .then( users => {
-                console.log( users, 'all users' )
-                this.setState( { users: users, modal: false, isLoggedIn: true } )
-                console.log( users, 'the users mofo' )
-            } )
-    }
-
-    // mapUsers = () => {
-    //   this.state.users.map((user, index) => {
-    //     console.log(user.firstName, 'fucking user')
-    //     return (
-    //       <table key={index}><tbody>
-    //         <tr>
-    //           <td>First Name</td>
-    //           <td>{user.firstName}</td>
-    //         </tr>
-    //       </tbody>
-    //       </table>
-    //     )
-    //   })
-    // }
-
-    componentDidMount() {
-        this.getUserProfile()
-    }
-
+    static contextType = UserContext
 
     render() {
-        // this.mapUsers()
-        // const { firstName, lastName, email } = this.state.users
-        // console.log(firstName, 'the first name')
+        const { user } = this.context
         return (
-            <>
-                <Container className="profile-page font-weight-light" >
-                    <Row>
-                        <Col xs="12">
-                            <h2>Profile</h2>
-                            { /* {this.state.users.map((user, id) => { 
-              return (
-                  <table key={id} className="table col-md-6 mx-auto">
-                <tbody>
-                  <tr>
-                    <td>First Name</td>
-                    <td>{user.firstName}</td>
-                  </tr>
-                  <tr>
-                    <td>Last Name</td>
-                    <td>{user.lastName}</td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>{user.email}</td>
-                  </tr>
-                </tbody>
-              </table>
-              )
-            })
-              }
-                */}
-                        </Col>
-                    </Row>
-                </Container>
-            </>
+            <Container className="profiles-page bg-light">
+                <Row>
+                    <Col xs="12" sm="5" md="4" lg="4" className="col-1">
+                        <img
+                            src={profileImg}
+                            className="img-fluid" alt={profileImg}
+                            style={{ maxWidth: "100%" }}
+                        />
+                        <h3>{user.firstName}{" "}{user.lastName}</h3>
+                        <p>{user.email}</p>
+                    </Col>
+
+                    <Col xs="12" sm="7" md="8" lg="8" className="col-2">
+                        {//to be update 
+                        }
+                        <h2>WatchList</h2>
+                        <ul>
+                            <li>Oslo August 31</li>
+                            <li>Mommy</li>
+                            <li>Melancholia</li>
+                        </ul>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

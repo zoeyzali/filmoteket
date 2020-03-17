@@ -1,155 +1,83 @@
 const express = require( 'express' )
 const users = express.Router()
-const cors = require( 'cors' )
-const bcrypt = require( 'bcrypt' )
-const jwt = require( 'jsonwebtoken' )
-
+const encryptPassword = require( '../config/encryptPassword' )
 const User = require( '../models/User' )
-users.use( cors() )
 
-users.get( '/', async ( req, res ) => {
-    let allUsers = await User.find()
-    res.status( 200 ).send( allUsers )
-} )
 
-users.post( '/signup', ( req, res ) => {
-    const today = new Date()
-    const userData = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        created: today
-    }
-    User.findOne( {
-        email: req.body.email
+
+users.post( '/signup', async ( req, res ) => {
+    const { email, password } = req.body
+
+    const user = new User( {
+        ...req.body,
+        password: encryptPassword( password )
     } )
-        .then( user => {
-            if ( !user ) {
-                bcrypt.hash( req.body.password, 10, ( err, hash ) => {
-                    userData.password = hash
-                    User.create( userData )
-                        .then( user => {
-                            console.log( userData, 'logg userdata' )
-                            res.json( {
-                                user,
-                                status: user.email + ' ' + user.firstName + ' ' + 'Registered!'
-                            } )
-                        } )
-                        .catch( err => {
-                            res.send( 'error: ' + err )
-                        } )
-                } )
-            } else {
-                res.json( { error: 'User already exists' } )
-            }
+    let emailCheck = await User.findOne( { email: email } )
+    if ( emailCheck ) {
+        return res.status( 500 ).json( { errorMssg: "Email already exists" } )
+    }
+    try {
+        await user.save()
+        res.json( {
+            successMssg: "User successfully registered",
+            user: `${user.firstName} and ${user.lastName}`,
+            // user,
+            email: user.email
         } )
-        .catch( err => {
-            res.send( 'error: ' + err )
-        } )
+    } catch ( error ) {
+        return res.status( 400 ).json( error, "signup error" )
+    }
 } )
 
+users.post( '/login', async ( req, res ) => {
+    let { email, password } = req.body
+    password = encryptPassword( password )
+    let user = await User.findOne( { email, password } )
 
-users.post( '/login', ( req, res ) => {
-    User.find( { email: req.body.email, password: req.body.password } )
-        .exec()
-        .then( user => {
-            console.log( user )
-
-            if ( !user ) {
-                return res.status( 401 ).json( {
-                    message: 'Auth failed'
-                } )
-            }
-            bcrypt.compare( req.body.password, password, ( err, result ) => {
-                if ( err ) {
-                    return res.status( 401 ).json( {
-                        message: 'Auth failed'
-                    } );
-                }
-                if ( result ) {
-                    const token = jwt.sign(
-                        {
-                            email: user[0].email,
-                            userId: user[0]._id
-                        },
-                        process.env.JWT_KEY,
-                        {
-                            expiresIn: "1h"
-                        } )
-                    return res.status( 200 ).json( {
-                        message: 'Auth successful',
-                        token: token,
-                        user: {
-                            email: user[0].email,
-                        }
-                    } )
-                }
-                res.status( 401 ).json( {
-                    message: 'Auth failed'
-                } );
-            } )
+    if ( user && user.password === password ) {
+        // console.log( 'userLogin', user )
+        req.session.user = user
+        return res.status( 200 ).json( {
+            successMssg: "Login success",
+            user: `${user.firstName} ${user.lastName} ${user.email}`
         } )
-        .catch( err => {
-            console.log( err )
-            res.status( 500 ).json( {
-                error: err
-            } )
-        } )
+    } else {
+        return res.status( 400 ).json( { errorMssg: "Email or Password is incorrect" } )
+    }
 } )
 
+users.get( '/login', ( req, res ) => {
+    res.json( req.session.user ?
+        req.session.user :
+        { status: 'not logged in' }
+    )
+} )
 
-// users.post( '/login', ( req, res ) => {
-//   User.find( {
-//     email: req.body.email
-//   } )
-//     .exec()
-//     .then( user => {
-//       if ( user ) {
-//         console.log( user, 'my MF user' )
-//         if ( bcrypt.compareSync( req.body.password, user.password ) ) {
-//           //password match
-//           const payload = {
-//             _id: user._id,
-//             firstName: user.firstName,
-//             lastName: user.lastName,
-//             email: user.email,
-//           }
-//           let token = jwt.sign( payload, process.env.JWT_KEY, {
-//             expiresIn: '1h'
-//           } )
-//           res.send( {
-//             token: token,
-//             user: user,
-//           } )
-//         } else {
-//           res.json( {
-//             error: 'User does not exist'
-//           } )
-//         }
-//       } else {
-//         res.json( {
-//           error: 'User does not exist'
-//         } )
-//       }
-//     } )
-//     .catch( err => {
-//       res.send( 'error: ' + err )
-//     } )
-// } )
+users.get( '/logout', ( req, res ) => {
+    const { user } = req.session
+    if ( user ) {
+        req.session.destroy()
+        res.status( 200 ).end()
+    } else {
+        return res.status( 400 ).end()
+    }
+} )
+
+users.get( '/', ( req, res ) => {
+    const user = req.session.user
+    if ( user && user.isAdmin === true ) {
+        allUsers = User.find()
+        res.status( 200 ).send( allUsers )
+    } else {
+        res.status( 400 ).send( "Tut Tut" )
+    }
+} )
 
 users.get( '/', ( req, res ) => {
     let users = User.find()
     res.json( users, 'respond with a resource' )
 } )
 
-users.get( '/profile/', ( req, res ) => {
-    let id = req.params._id
-    User.find( req.userData, ( err, users ) => {
-        console.log( users, 'all user' )
-        res.send( { users: users, message: 'Boohoo' } );
-    } )
-} )
 
 
 // Delete a user by ID
@@ -163,10 +91,6 @@ users.delete( '/:id', ( req, res ) => {
         } )
         .catch( err => res.status( 400 ).json( 'error: ' + err ) )
 } )
-
-
-
-
 
 
 

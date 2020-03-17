@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-    Container, Row, Col, Form, FormGroup, Label, Input, Button
-} from 'reactstrap'
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import axios from 'axios'
 
 
@@ -28,26 +26,51 @@ class ContactPage extends Component {
             email,
             message
         } )
-        console.log( form, 'hello form' )
     }
     render() {
-        return <Container className="contact-page mt-2">
+        return <Container className="contact-page bg-light py-4 mt-4">
             <Row className="contact-wrapper">
-                <Col className="justify-content-center m-auto" xs="12" md="12" lg="12">
-                    <Form onSubmit={this.handleSubmit} className="contact-form m-auto" style={{ maxWidth: '600px' }}>
+                <Col className="mx-auto" xs="12" md="12" lg="12">
+                    <Form onSubmit={this.handleSubmit} className="contact-form mx-auto text-center">
                         <FormGroup>
-                            <Label for="exampleName">Name</Label>
-                            <Input type="text" name="name" id="examplePassword" placeholder="Your fullname" value={this.state.name} onChange={this.handleChange} />
+                            <Label htmlFor="exampleName"
+                                className="bg-warning">Name</Label>
+                            <Input
+                                type="text"
+                                name="name"
+                                id="examplePassword"
+                                placeholder="Bowie"
+                                value={this.state.name}
+                                onChange={this.handleChange}
+                            />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="exampleEmail">Email</Label>
-                            <Input type="email" name="email" id="exampleEmail" placeholder="idk@myemail.com" value={this.state.email} onChange={this.handleChange} />
+                            <Label htmlFor="exampleEmail" className="bg-warning">Email</Label>
+                            <Input type="email"
+                                name="email"
+                                id="exampleEmail"
+                                placeholder="idk@email.com"
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                            />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="exampleText">Message</Label>
-                            <Input type="textarea" name="message" id="exampleText" placeholder="Write a line or two" value={this.state.message} onChange={this.handleChange} />
+                            <Label htmlFor="exampleText" className="bg-warning">
+                                Message</Label>
+                            <Input type="textarea"
+                                name="message"
+                                id="exampleText"
+                                placeholder="Your message here..."
+                                value={this.state.message}
+                                onChange={this.handleChange}
+                            />
                         </FormGroup>
-                        <Button color="secondary" type="submit">SEND MESSAGE</Button>
+                        <Button
+                            color="warning"
+                            size="md"
+                            type="submit">
+                            SEND MESSAGE
+                            </Button>
                     </Form>
                 </Col>
             </Row>
@@ -55,4 +78,4 @@ class ContactPage extends Component {
     }
 }
 
-export default ContactPage;
+export default ContactPage

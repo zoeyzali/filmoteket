@@ -8,24 +8,25 @@ class FilmsParentContainer extends Component {
     constructor( props ) {
         super( props )
         this.state = {
-
         }
     }
 
 
-
-
     render() {
         return (
-            <Container className="films-page">
-                <Row className="header mt-2">
-                    <div>
+            <Container className="films-page bg-light">
+                <Row className="mt-3">
+                    <div className="films-header">
                         <h1>Winners through the Years</h1>
-                        <img src={require( '../images/berlinale.png' )} className="img-fluid-logo" alt="berlinale-logo" />
-                        <img src={require( '../images/festivalDeCannes.png' )} className="img-fluid-logo" alt="cannes-logo" />
+                        <div className="films-logo-wrapper">
+                            <img src={require( '../images/berlinale.png' )} className="img-fluid-logo" alt="berlinale-logo"
+                            />
+                            <img src={require( '../images/festivalDeCannes.png' )} className="img-fluid-logo" alt="cannes-logo"
+                            />
+                        </div>
                     </div>
                 </Row>
-                <div className="films-page header">
+                <div className="filmslist-wrapper">
                     <FilmsCannes />
                     <FilmsBerlinale />
                 </div>

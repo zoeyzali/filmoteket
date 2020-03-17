@@ -1,0 +1,28 @@
+.profiles-page {
+    width: 100%;
+    height: auto;
+    padding: 30px 10px;
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .col {
+        .col-2 {
+            align-items: flex-end;
+        }
+    }
+
+    ul {
+        li {
+            list-style: none;
+        }
+    }
+
+    h2 {
+        font-family: 'Alegreya', sans-serif;
+        font-weight: 600;
+        letter-spacing: 2.4px;
+    }
+}

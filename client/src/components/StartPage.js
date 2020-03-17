@@ -7,8 +7,8 @@ import AboutUs from './AboutPage'
 import SearchBox from './SearchBox'
 import FilmsList from './FilmsList'
 import Pagination from './Pagination'
-import FilmDetails from './FilmDetails'
-
+import SearchDetails from './SearchFilmDetails'
+import { tmdbKey } from '../utils/api-request'
 
 class StartPage extends Component {
     constructor() {
@@ -25,8 +25,9 @@ class StartPage extends Component {
     /** search function TMDB API needed */
     handleSubmit = ( event ) => {
         event.preventDefault()
-        const api_key = process.env.REACT_APP_API_KEY
-        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${this.state.query}` )
+        const tmdbApiKey = tmdbKey
+        console.log( tmdbApiKey, "key" )
+        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${this.state.query}` )
             .then( data => data.json() )
             .then( data => {
                 console.log( data, 'films' )
@@ -41,11 +42,11 @@ class StartPage extends Component {
         this.setState( { query: event.target.value } )
     }
 
-    nextPage = ( pageNumber, api_key ) => {
-        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${this.state.query}&page=${pageNumber}` )
+    nextPage = ( pageNumber, tmdbApiKey ) => {
+        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${this.state.query}&page=${pageNumber}` )
             .then( data => data.json() )
             .then( data => {
-                console.log( data, 'hej search-nextPage' )
+                // console.log( data, 'hej search-nextPage' )
                 this.setState( {
                     films: [...data.results],
                     currentPage: pageNumber,
@@ -64,29 +65,28 @@ class StartPage extends Component {
     }
 
     render() {
-        const numberOfPages = Math.floor( this.state.totalResults / 20 );
+        const numberOfPages = Math.floor( this.state.totalResults / 20 )
         return (
-            <>
-                <Container className="start-page">
-                    <Row>
-                        <Col xs="12" md="12" lg="12" className="container">
-                            <AboutUs />
-                            <SearchBox handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
-                            <CarouselSlider />
-                        </Col>
-                    </Row>
+            <Container className="start-page">
+                <Row className="intro-section">
+                    <Col xs="12" md="12" lg="12" className="container">
+                        <AboutUs />
+                        <SearchBox handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+                        <CarouselSlider />
+                    </Col>
+                </Row>
+                <div className="some-shit">
+                    {  /** search result/content */}
                     {this.state.currentFilm === null ?
-                        <Row className="mt-5">
-                            <Col xs="12" sm="12" md="12" lg="12">
-                                <div className="mock-content">
-                                    <FilmsList viewFilmInfo={this.viewFilmInfo} films={this.state.films} />
-                                </div>
-                            </Col>
-                        </Row> : <FilmDetails currentFilm={this.state.currentFilm} closeFilmInfo={this.closeFilmInfo} />
+                        <Row className="mt-5 search-wrapper bg-light">
+                            <div className="search-content">
+                                <FilmsList viewFilmInfo={this.viewFilmInfo} films={this.state.films} />
+                            </div>
+                        </Row> : <SearchDetails currentFilm={this.state.currentFilm} closeFilmInfo={this.closeFilmInfo} />
                     }
                     {this.state.totalResults > 20 && this.state.currentFilm === null ? <Pagination pages={numberOfPages} nextPage={this.nextPage} currentPage={this.state.currentPage} /> : ""}
-                </Container>
-            </>
+                </div>
+            </Container>
         )
     }
 }
