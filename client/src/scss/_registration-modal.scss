@@ -6,7 +6,7 @@
   background-color: #eee;
 
   .modal-header {
-    background-color: #db2d43;
+    background-color: $main-red;
     justify-content: center;
     align-items: center;
 
@@ -25,8 +25,8 @@
     text-align: center;
 
     .error-mssg {
-      color: #db2d43;
-      font-weight: bolder;
+      color: $other-red;
+      font-weight: boldest;
     }
   }
 

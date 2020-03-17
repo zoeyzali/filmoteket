@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from "react-router-dom"
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
-import logo from '../images/filmkollenLogo.png'
+import logo from '../images/logo-2.png'
 import Login from './LoginPage'
 import Registration from './Registration'
 import { UserContext } from '../context/UserContext'

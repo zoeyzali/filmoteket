@@ -26,7 +26,6 @@ class StartPage extends Component {
     handleSubmit = ( event ) => {
         event.preventDefault()
         const tmdbApiKey = tmdbKey
-        console.log( tmdbApiKey, "key" )
         fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${this.state.query}` )
             .then( data => data.json() )
             .then( data => {
@@ -71,7 +70,10 @@ class StartPage extends Component {
                 <Row className="intro-section">
                     <Col xs="12" md="12" lg="12" className="container">
                         <AboutUs />
-                        <SearchBox handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
+                        <SearchBox
+                            handleSubmit={this.handleSubmit}
+                            handleChange={this.handleChange}
+                        />
                         <CarouselSlider />
                     </Col>
                 </Row>
@@ -80,11 +82,23 @@ class StartPage extends Component {
                     {this.state.currentFilm === null ?
                         <Row className="mt-5 search-wrapper bg-light">
                             <div className="search-content">
-                                <FilmsList viewFilmInfo={this.viewFilmInfo} films={this.state.films} />
+                                <FilmsList viewFilmInfo={this.viewFilmInfo} films={this.state.films}
+                                />
                             </div>
-                        </Row> : <SearchDetails currentFilm={this.state.currentFilm} closeFilmInfo={this.closeFilmInfo} />
+                        </Row> : <SearchDetails
+                            currentFilm={this.state.currentFilm}
+                            closeFilmInfo={this.closeFilmInfo}
+                        />
                     }
-                    {this.state.totalResults > 20 && this.state.currentFilm === null ? <Pagination pages={numberOfPages} nextPage={this.nextPage} currentPage={this.state.currentPage} /> : ""}
+                    {this.state.totalResults > 20 && this.state.currentFilm === null
+                        ?
+                        <Pagination
+                            pages={numberOfPages}
+                            nextPage={this.nextPage}
+                            currentPage={this.state.currentPage}
+                        />
+                        :
+                        ""}
                 </div>
             </Container>
         )

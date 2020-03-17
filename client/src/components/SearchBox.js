@@ -5,7 +5,8 @@ const SearchBox = ( props ) => {
     return (
         <>
             <Row>
-                <Form onSubmit={props.handleSubmit} className="col-7 mx-auto">
+                <Form onSubmit={props.handleSubmit}
+                    className="col-7 mx-auto">
                     <Input
                         className="search-box flex-sm-fill text-sm-center"
                         type="text"

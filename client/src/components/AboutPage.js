@@ -11,8 +11,8 @@ const AboutUs = () => {
                     A small app for film enthusiasts
                     </h2>
                 <hr className="my-2" />
-                <p className="lead-1">
-                    <Button className="btn btn-outline d-block"
+                <p className="lead">
+                    <Button className="btn btn-outline d-block jumboBtn"
                         color="light">
                         FILMS
                         </Button>

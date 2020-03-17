@@ -2,28 +2,44 @@
   background-image: url("../images/festivalDeCannes.png"), url("../images/berlinale.png");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   font-family: 'Alegreya',
     sans-serif;
 }
 
 .img-fluid {
-  width: 250px;
+  width: 260px;
   height: auto;
 }
 
 .content-wrapper {
-  background-color: #eee;
+  background-color: $lightest-gray;
   color: black;
-  padding: 10px;
+  padding: 15px 5px;
+  margin-top: 2rem;
+
+  transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  .content-header {
+    font-size: 3rem;
+    letter-spacing: 2.5px;
+  }
+
+  .content {
+    font-family: 'Questrial', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+  }
 }
 
-.Cannes-container,
+.Cannes,
 .Berlinale {
   h1 {
     color: crimson;
     text-align: center;
     font-size: 6rem;
-    letter-spacing: -2px;
+    letter-spacing: -2.5px;
   }
 
 

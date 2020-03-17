@@ -12,9 +12,9 @@ import Profile from './components/Profile'
 import UserContextProvider, { UserContext } from './context/UserContext'
 import LoginPage from './components/LoginPage'
 import { AuthHelper } from './components/AuthHelper'
-
-// import LoginContainer from './components/LoginContainer'
 // import PrivateRoute from './components/PrivateRoute'
+// import LoginContainer from './components/LoginContainer'
+
 
 export default function App() {
     const user = useContext( UserContext )
@@ -25,18 +25,22 @@ export default function App() {
                     <div>
                         <Navbar />
                         <Switch>
-                            <Route exact path="/" component={StartPage} />
-                            <Route path="/films/" component={FilmsParentContainer} />
-                            <Route path="films/cannes" component={FilmsCannes} />
-                            <Route path="films/berlinale" component={FilmsBerlinale} />
-                            <Route path="/festivals" component={FestivalsPage} />
-                            <Route path="/contact" component={ContactPage} />
-                            {  //   <Route path="/login" component={LoginPage}/>}
-                            }
-                            <Route path="/login" render={() => <LoginPage />} />
-
-                            <Route path="/profile" component={Profile} />
-
+                            <Route exact path="/" component={StartPage}
+                            />
+                            <Route path="/films/" component={FilmsParentContainer}
+                            />
+                            <Route path="films/cannes" component={FilmsCannes}
+                            />
+                            <Route path="films/berlinale" component={FilmsBerlinale}
+                            />
+                            <Route path="/festivals" component={FestivalsPage}
+                            />
+                            <Route path="/contact" component={ContactPage}
+                            />
+                            <Route path="/login" component={LoginPage}
+                            />
+                            <Route path="/profile" component={Profile}
+                            />
                         </Switch>
                         <Footer />
                     </div>
@@ -48,3 +52,4 @@ export default function App() {
 
 
 
+//<Route path="/login" render={() => <LoginPage />} />

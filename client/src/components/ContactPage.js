@@ -26,6 +26,7 @@ class ContactPage extends Component {
             email,
             message
         } )
+        console.log( form, "contacts form" )
     }
     render() {
         return <Container className="contact-page bg-light py-4 mt-4">
@@ -46,7 +47,8 @@ class ContactPage extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="exampleEmail" className="bg-warning">Email</Label>
-                            <Input type="email"
+                            <Input
+                                type="email"
                                 name="email"
                                 id="exampleEmail"
                                 placeholder="idk@email.com"
@@ -57,7 +59,8 @@ class ContactPage extends Component {
                         <FormGroup>
                             <Label htmlFor="exampleText" className="bg-warning">
                                 Message</Label>
-                            <Input type="textarea"
+                            <Input
+                                type="textarea"
                                 name="message"
                                 id="exampleText"
                                 placeholder="Your message here..."

@@ -11,8 +11,8 @@
     letter-spacing: 1.8px;
 
     .logo {
-      width: 110px;
-      height: 80px;
+      width: 105px;
+      height: 125px;
     }
   }
 
@@ -35,12 +35,12 @@
 
     &.active {
       text-decoration: underline;
-      text-decoration-color: crimson;
+      text-decoration-color: $main-red;
     }
   }
 
   li.logout-btn {
-    background-color: crimson;
+    background-color: $main-red;
     border-radius: 0.2rem;
     text-transform: uppercase;
     color: #fff;

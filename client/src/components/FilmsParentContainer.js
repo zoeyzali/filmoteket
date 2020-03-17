@@ -15,7 +15,7 @@ class FilmsParentContainer extends Component {
     render() {
         return (
             <Container className="films-page bg-light">
-                <Row className="mt-3">
+                <Row className="mt-2">
                     <div className="films-header">
                         <h1>Winners through the Years</h1>
                         <div className="films-logo-wrapper">
