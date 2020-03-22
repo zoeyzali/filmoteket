@@ -3,16 +3,23 @@ import { UserContext } from '../context/UserContext'
 
 
 export const AuthHelper = ( props ) => {
+
     const { isAuthenticated } = useContext( UserContext )
     const [isLoading, setIsLoading] = useState( true )
 
     const checkLogin = async () => {
         try {
-            const response = await fetch( '/users/login' ).catch( err => console.log( err, "errrrrrr" ) )
-            const result = { user: await response.json(), status: response.status }
-            // console.log( result, "result" )
+            const response = await fetch( '/users/login' )
+                .catch( err => console.log( err, "profile error" ) )
+            const result = {
+                user: await response.json(), status: response.status
+            }
             if ( result.user ) {
+                console.log( result.user, "result.user" )
                 isAuthenticated( result.user )
+            } else {
+                isAuthenticated( result.status )
+                console.log( result.status, "status" )
             }
             setIsLoading( false )
         }
@@ -25,14 +32,15 @@ export const AuthHelper = ( props ) => {
         checkLogin()
     }, [] )
 
-
+    if ( !isAuthenticated ) {
+        return ( <p>You need to login! </p> )
+    }
     if ( isLoading )
         return (
-            <div className="loading-bar pt-6">
-                <p className="text-center mt-3 display-2">Loading...</p>
+            <div className="loading pt-6 bg-light">
+                <p className="text-center mt-3 display-2 lead">Loading...</p>
             </div>
         )
-
     return (
         <div>
             {props.children}

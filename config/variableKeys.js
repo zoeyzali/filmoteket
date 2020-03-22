@@ -1,6 +1,8 @@
 const dotenv = require( 'dotenv' )
-dotenv.config( { path: `.env.development` } )
+dotenv.config()
 
 module.exports = {
-    tmdbKey: process.env.TMDB_API_KEY
+    apiKey: process.env.API_KEY,
+    port: process.env.PORT
 }
+

@@ -1,37 +1,43 @@
-.navbar-main {
+.navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  color: #020101de;
+  flex-wrap: wrap;
+  width: 100%;
 
   .navbar-brand {
-    font-family: 'Questrial',
-      sans-serif;
-    font-weight: 900;
+    font-family: 'Questrial', sans-serif !important;
+    font-weight: 700;
     letter-spacing: 1.8px;
+    font-size: 1.6rem;
 
-    .logo {
-      width: 105px;
-      height: 125px;
+    img.logo {
+      width: 115px;
+      height: 130px;
     }
-  }
-
-  .collapse .navbar-collapse {
-    background-color: transparent;
   }
 
   .navbar-toggler {
     padding: 0.25rem 0.5rem;
-    font-size: 15px;
+    font-size: 25px;
     border: none !important;
     outline: none;
-    // border-radius: 0.2rem;
   }
 
-  a.nav-link {
-    font-size: 14px;
+  #nav-toggle-icon {
+    color: $main-red;
+  }
+
+  a,
+  .nav-link,
+  li.nav-item {
+    font-size: 15px;
     text-align: center;
-    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: flex-end;
+    color: #020101de;
+    display: inline !important;
+    padding: 0.5rem 0.8rem;
 
     &.active {
       text-decoration: underline;
@@ -39,19 +45,26 @@
     }
   }
 
-  li.logout-btn {
+  .login-btn {
+    color: $main-red;
+    border-radius: 0.2rem;
+    text-transform: uppercase;
+    // background-color: #ffffff;
+    border: none;
+    // display: inline;
+    // text-align: center;
+  }
+
+
+  .logout-btn {
     background-color: $main-red;
     border-radius: 0.2rem;
     text-transform: uppercase;
-    color: #fff;
+    // text-align: center;
   }
-}
 
-.navbar-nav {
-  Button.nav-link {
-    background-color: #eee;
-    padding: 6px 7px;
-    border-radius: 0.2rem;
 
+  span .navbar-toggler-icon {
+    color: $main-red
   }
 }

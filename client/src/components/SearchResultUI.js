@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 /** Search ResultListUI Link to Details*/
-
 const SearchResultUI = ( props ) => {
     return (
         <div className="search-inner">
-            <Link to="#" onClick={() => props.viewFilmInfo( props.filmId )}>
+            <Link to="#"
+                onClick={() => props.viewFilmInfo( props.filmId )}>
                 {props.image === null ?
-                    <img src={`https://dummyimage.com/w185/333/fff.png&text=No+images`}
+                    <img src={`https://dummyimage.com/w185/333/fff.png&text=No+image`}
                         className="img-fluid" alt={props.image}
                     />
                     :

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
 import logo from '../images/logo-2.png'
 import Login from './LoginPage'
-import Registration from './Registration'
+import Logout from './Logout'
+// import Registration from './Registration'
 import { UserContext } from '../context/UserContext'
 
 
@@ -26,27 +27,8 @@ class AppNavbar extends Component {
     }
 
     render() {
-        const { user, logOutUser } = this.context
-
-        const loginRegLink = (
-            <ul className="navbar-nav mx-auto">
-                <li className="nav-item">
-                    <Login />
-                </li>
-                <li className="nav-item">
-                    <Registration />
-                </li>
-            </ul>
-        )
-        const userLink = (
-            <ul className="navbar-nav">
-                <li className="nav-item">
-                    <Link to="/profile" className="nav-link">
-                        Profile
-                    </Link>
-                </li>
-            </ul>
-        )
+        const { user } = this.context
+        console.log( user.firstName, "user nav" )
 
         return (
             <div>
@@ -54,34 +36,31 @@ class AppNavbar extends Component {
                     <a href="/" className="navbar-brand">
                         <img src={logo} alt={logo} className="logo"
                         />
-                        filmkollen</a>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    exact to="/">Home</NavLink>
+                        filmkollen
+                        </a>
+                    <NavbarToggler
+                        id="nav-toggle-icon"
+                        onClick={this.toggle} />
+                    <Collapse
+                        isOpen={this.state.isOpen} navbar>
+                        <Nav className="mx-auto" navbar>
+                            <NavLink className="nav-link"
+                                exact to="/">Home</NavLink>
+                            <NavLink className="nav-link"
+                                to="/films">Films</NavLink>
+                            <NavLink className="nav-link"
+                                to="/festivals">Festivals</NavLink>
+                            <NavLink to="/profile" className="nav-link">
+                                { // {user !== undefined ? user.firstName + " " + user.lastName : "Profile"}
+                                }
+                                Profile
+                            </NavLink>
+                            <NavItem className="nav-link">
+                                <Login />
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/films">Films</NavLink>
+                            <NavItem className="nav-link">
+                                <Logout />
                             </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/festivals">Festivals</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/contact">Contact</NavLink>
-                            </NavItem>
-
-                            {user ? userLink : loginRegLink}
-
-                            <li className="nav-item logout-btn">
-                                <Link to="/" onClick={logOutUser} className="nav-link">
-                                    Logout
-                                </Link>
-                            </li>
                         </Nav>
                     </Collapse>
                 </Navbar>
@@ -90,4 +69,30 @@ class AppNavbar extends Component {
     }
 }
 
-export default AppNavbar 
+export default AppNavbar
+
+
+
+/**              <NavItem>
+                                <NavLink className="nav-link"
+                                    to="/contact">Contact</NavLink>
+                            </NavItem>
+
+              const loginRegLink = (
+            <ul className="mx-auto">
+                <li className="nav-item">
+                    <Registration />
+                </li>
+            </ul>
+        )
+                const userLink = (
+            <ul className="">
+                <li className="nav-item">
+                    <Link to="/profile" className="nav-link">
+                        Profile
+                    </Link>
+                </li>
+            </ul>
+        )
+ {user ? userLink : loginRegLink}
+                            */

@@ -1,25 +1,18 @@
-import React, { createContext, Component } from 'react'
-export const UserContext = createContext( { user: {} } )
-export const UserConsumer = UserContext.Consumer
-// export const UserContextProvider = UserContext.Provider
+import React, { Component } from 'react'
 
-export class UserContextProvider extends Component {
+export const UserContext = React.createContext()
+
+class UserProvider extends Component {
     state = {
         user: {}
     }
-    // const[user, setUser] = useState( "" )
-    // const isAuthenticated = ( user ) => {
-    //     setUser( user )
-    // }
-    // const destroyAuthUser = () => {
-    //     setUser( "" )
-    // }
 
     isAuthenticated = user => {
         this.setState( {
-            user
+            user: user
         } )
     }
+
     logOutUser = () => {
         this.setState( {
             user: ""
@@ -27,17 +20,20 @@ export class UserContextProvider extends Component {
     }
 
     render() {
-        const { children } = this.props
-        const { user } = this.state
-        const { isAuthenticated, logOutUser } = this
         return (
             <UserContext.Provider
-                value={{ user, isAuthenticated, logOutUser }}>
-                {children}
+                value={{
+                    ...this.state,
+                    isAuthenticated: this.isAuthenticated,
+                    logOutUser: this.logOutUser
+                }}>
+                {this.props.children}
             </UserContext.Provider>
         )
     }
-
 }
 
-export default UserContextProvider
+const UserConsumer = UserContext.Consumer
+
+
+export { UserProvider, UserConsumer } 

@@ -52,7 +52,8 @@ class FilmsCannes extends Component {
                 </Row>
                 {
                     this.state.currentFilm === null ? this.state.currentFilm : <SearchDetails
-                        currentFilm={this.state.currentFilm} closeFilmInfo={this.closeFilmInfo}
+                        currentFilm={this.state.currentFilm}
+                        closeFilmInfo={this.closeFilmInfo}
                     />
                 }
             </>

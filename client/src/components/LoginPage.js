@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap'
-import { withRouter } from 'react-router-dom'
-import { UserContext } from '../context/UserContext'
+import Registration from './Registration'
+// import { Link } from 'react-router-dom'
+// import { UserContext } from '../context/UserContext'
 
 class Login extends Component {
     constructor( props ) {
@@ -18,8 +19,6 @@ class Login extends Component {
             emailErr: false,
             passErr: false,
         }
-        const { user, isAuthenticated } = UserContext
-        console.log( user, isAuthenticated, 'from login' )
     }
 
 
@@ -40,7 +39,7 @@ class Login extends Component {
     handleLogin = ( e ) => {
         e.preventDefault()
         const { email, password } = this.state
-        const { history } = this.props
+        // const { history } = this.props
         if ( email === "" || !email ) {
             return this.setState( {
                 emailErr: true,
@@ -68,7 +67,7 @@ class Login extends Component {
         } )
             .then( res => {
                 if ( res.ok ) {
-                    // console.log( res, "just res" )
+                    console.log( res, "just res" )
                     return res.json()
                 } else {
                     if ( !res || res === undefined )
@@ -81,6 +80,7 @@ class Login extends Component {
             } )
             .then( data => {
                 console.log( data, 'loginResp' )
+                // localStorage.setItem( "FII-userData", JSON.stringify( data.user ) )
                 this.setState( {
                     user: data,
                     mssg: data.successMssg,
@@ -109,13 +109,14 @@ class Login extends Component {
                 loggedIn: false,
                 error
             } ) )
-        history.push( `/profile` )
+        // history.push( `/profile` )
     }
+
 
     componentDidMount() {
         this.setState( {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
             emailErr: false,
             passErr: false,
             modal: false,
@@ -124,23 +125,21 @@ class Login extends Component {
     }
 
     render() {
+        // this.checkForLogin()
         const { emailErr, passErr, mssg, loggedIn } = this.state
-        // const { isAuthenticated } = this.state.user
-        // console.log( isAuthenticated, "mssg & user" )
-
         const errorMssg = "Field cannot be empty"
         const confirmationMssg = "All good"
         const errorish = "Please double check email or password" + mssg
-
         return (
-            <div>
+            <React.Fragment>
                 <Button
-                    className="nav-link login-btn"
                     onClick={this.toggle}
                     color="light"
+                    className="login-btn btn bt-outline"
                 >
                     Login
                     </Button>
+
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -148,14 +147,15 @@ class Login extends Component {
                     className={this.props.className}
                 >
                     <ModalHeader
-                        className=""
                         toggle={this.toggle}>
                         <div className="">
                             <h2>{this.state.text}</h2>
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        {!loggedIn ? <span className="mssg" style={{ color: "red" }}>
+                        {!loggedIn ? <span
+                            className="mssg"
+                            style={{ color: "red" }}>
                             {errorish}
                         </span>
                             : null
@@ -194,19 +194,24 @@ class Login extends Component {
                                 }
                             </FormGroup>
                             <FormGroup className="">
-
                                 <input type="checkbox" /> {" "}
                                 <span>Remember Me</span>
+                                <br />
+                                <span>Not a member?</span>
+                                <Registration />
                             </FormGroup>
+
                             <Button type="submit"
                                 mssg={confirmationMssg}
-                                className="light"
-                                onClick={this.toggle}>Submit
+                                color="light"
+                                onClick={this.toggle}>
+                                SUBMIT
                                 </Button>
+
                         </Form>
                     </ModalBody>
                 </Modal>
-            </div>
+            </React.Fragment>
         )
     }
 }
@@ -216,4 +221,4 @@ class Login extends Component {
 // { confirmationMssg }
 //  </span>  
 
-export default withRouter( Login )
+export default Login

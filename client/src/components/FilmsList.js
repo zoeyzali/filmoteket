@@ -6,7 +6,6 @@ const FilmsList = ( props ) => {
     return (
         <Row className="search-list">
             {props.films.map( ( film ) => {
-                // console.log( film, "filmslist?" )
                 return (
                     <SearchResultUI
                         key={film.id}
@@ -14,7 +13,7 @@ const FilmsList = ( props ) => {
                         filmId={film.id}
                         title={film.title}
                         overview={film.overview}
-                        image={film.poster_path}
+                        image={film.poster_path || film.image}
                         date={film.release_date}
                     />
                 )

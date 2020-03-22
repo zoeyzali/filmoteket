@@ -7,7 +7,6 @@ const User = require( '../models/User' )
 
 users.post( '/signup', async ( req, res ) => {
     const { email, password } = req.body
-
     const user = new User( {
         ...req.body,
         password: encryptPassword( password )
