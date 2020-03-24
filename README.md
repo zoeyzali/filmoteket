@@ -5,5 +5,9 @@ Films you say, mm, yes according to urban dictionary: "When it's art, you call i
 
 For now just dumping everything here.. to be refactored.
 
+to check it out:
+have a locally run mongodb for signup/login etc
+it's a plus if you have a tmdb Apikey.. to get the search functionality work. 
+
 npm install
 npm run dev
