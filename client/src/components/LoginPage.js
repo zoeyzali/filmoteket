@@ -1,31 +1,28 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap'
 import Registration from './Registration'
-// import { Link } from 'react-router-dom'
-// import { UserContext } from '../context/UserContext'
+
 
 class Login extends Component {
     constructor( props ) {
         super( props )
         this.state = {
+            email: '',
+            password: '',
             loggedIn: false,
             modal: false,
-            text: 'Sign In!',
-            user: {
-                email: '',
-                password: '',
-            },
-            mssg: "",
+            mssg: false,
             emailErr: false,
             passErr: false,
         }
     }
 
 
+
     toggle = () => {
         this.setState( prevState => ( {
-            modal: !prevState.modal,
-            mssg: ""
+            modal: !prevState.modal
+
         } ) )
     }
 
@@ -44,7 +41,6 @@ class Login extends Component {
             return this.setState( {
                 emailErr: true,
                 modal: true,
-                // mssg: ""
             } )
         }
         if ( password === "" || !password ) {
@@ -54,7 +50,6 @@ class Login extends Component {
                 emailErr: false,
             } )
         }
-
         fetch( '/users/login', {
             method: "POST",
             headers: {
@@ -65,25 +60,13 @@ class Login extends Component {
                 password: password
             } )
         } )
-            .then( res => {
-                if ( res.ok ) {
-                    console.log( res, "just res" )
-                    return res.json()
-                } else {
-                    if ( !res || res === undefined )
-                        return this.setState( {
-                            modal: true,
-                            loggedIn: false,
-                            mssg: ""
-                        } )
-                }
-            } )
+            .then( res => res.json() )
             .then( data => {
-                console.log( data, 'loginResp' )
-                // localStorage.setItem( "FII-userData", JSON.stringify( data.user ) )
+                console.log( data, 'data login data' )
                 this.setState( {
-                    user: data,
-                    mssg: data.successMssg,
+                    email: data.email,
+                    password: data.password,
+                    mssg: false,
                     modal: false,
                     emailErr: false,
                     passErr: false,
@@ -93,7 +76,7 @@ class Login extends Component {
                     return this.setState( {
                         modal: true,
                         loggedIn: false,
-                        mssg: "Bull"
+                        mssg: true
                     } )
                 }
                 else {
@@ -107,9 +90,11 @@ class Login extends Component {
             .catch( error => this.setState( {
                 modal: true,
                 loggedIn: false,
+                mssg: true,
                 error
             } ) )
-        // history.push( `/profile` )
+        window.location.replace( '/profile' )
+        // this.props.history.push( `/profile` )
     }
 
 
@@ -120,26 +105,28 @@ class Login extends Component {
             emailErr: false,
             passErr: false,
             modal: false,
-            loggedIn: true
+            // loggedIn: true
         } )
     }
 
     render() {
         // this.checkForLogin()
-        const { emailErr, passErr, mssg, loggedIn } = this.state
+        const { emailErr, passErr, mssg } = this.state
         const errorMssg = "Field cannot be empty"
         const confirmationMssg = "All good"
-        const errorish = "Please double check email or password" + mssg
+        const errorish = "Please double check email or password"
+
+        /**      */
+        // console.log( errorish, "errorish" )
         return (
             <React.Fragment>
                 <Button
                     onClick={this.toggle}
-                    color="light"
-                    className="login-btn btn bt-outline"
+                    // color="light"
+                    className="login-btn btn btn-outline"
                 >
                     Login
                     </Button>
-
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -149,11 +136,11 @@ class Login extends Component {
                     <ModalHeader
                         toggle={this.toggle}>
                         <div className="">
-                            <h2>{this.state.text}</h2>
+                            <h2>Sign In</h2>
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        {!loggedIn ? <span
+                        {mssg ? <span
                             className="mssg"
                             style={{ color: "red" }}>
                             {errorish}
@@ -162,7 +149,6 @@ class Login extends Component {
                         }
                         <Form onSubmit={this.handleLogin}
                             className="text-center p-3">
-
                             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                 <Input
                                     type="email"
@@ -202,12 +188,17 @@ class Login extends Component {
                             </FormGroup>
 
                             <Button type="submit"
-                                mssg={confirmationMssg}
                                 color="light"
                                 onClick={this.toggle}>
                                 SUBMIT
                                 </Button>
-
+                            {mssg &&
+                                <span
+                                    className="mssg"
+                                    style={{ color: "green" }}>
+                                    {confirmationMssg}
+                                </span>
+                            }
                         </Form>
                     </ModalBody>
                 </Modal>
@@ -217,8 +208,6 @@ class Login extends Component {
 }
 
 
-//<span className="mssg" style={{ color: "green" }}>
-// { confirmationMssg }
-//  </span>  
+
 
 export default Login

@@ -1,22 +1,19 @@
 .films-page {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
-  // background-color: #eee;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: snow;
 
   .films-header {
-    align-items: center;
     margin: 0 auto;
+    line-height: 1;
 
     h1 {
-      font-family: 'Alegreya', sans-serif;
-      font-weight: 900;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
       text-align: center;
-      font-size: 3.5rem;
       letter-spacing: -0.5px;
-      color: var(--dark);
+      color: var(--mainBlack);
 
     }
 
@@ -24,7 +21,7 @@
       text-align: center;
 
       .img-fluid-logo {
-        width: 100px;
+        width: 150px;
         height: auto;
       }
     }
@@ -32,16 +29,17 @@
 
   img.posters {
     display: block;
-    width: 185px;
-    height: 250px;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
     filter: contrast(120%);
     transition: border .1s linear;
+    box-shadow: 0 8px 8px 10px #eee;
 
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
   }
 
-  .films-row,
-  .filmslist-wrapper {
-    padding: 3px;
+  .films-row {
+    padding: 5px;
   }
 }

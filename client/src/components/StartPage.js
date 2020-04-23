@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-    Container, Row, Col
-} from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import CarouselSlider from './CarouselSlider'
 import AboutUs from './AboutPage'
 import SearchBox from './SearchBox'
@@ -19,20 +17,26 @@ class StartPage extends Component {
             totalResults: 0,
             currentPage: 1,
             currentFilm: null,
+            people: []
         }
     }
 
     /** search function TMDB API needed */
     handleSubmit = ( event ) => {
         event.preventDefault()
-        const tmdbApiKey = tmdbKey
-        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${this.state.query}` )
+        fetch( `https://api.themoviedb.org/3/search/multi?api_key=${tmdbKey}&query=${this.state.query}` )
             .then( data => data.json() )
             .then( data => {
-                console.log( data, 'films' )
+                console.log( data.results.media_type, 'results' )
+                if ( data.results[0].media_type === "person" ) {
+                    this.setState( {
+                        people: [...data.results]
+                    } )
+                }
                 this.setState( {
                     films: [...data.results],
                     totalResults: data.total_results
+
                 } )
             } )
     }
@@ -41,11 +45,11 @@ class StartPage extends Component {
         this.setState( { query: event.target.value } )
     }
 
-    nextPage = ( pageNumber, tmdbApiKey ) => {
-        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${this.state.query}&page=${pageNumber}` )
+    nextPage = ( pageNumber ) => {
+        fetch( `https://api.themoviedb.org/3/search/movie?api_key=${tmdbKey}&query=${this.state.query}&page=${pageNumber}` )
             .then( data => data.json() )
             .then( data => {
-                // console.log( data, 'hej search-nextPage' )
+                // console.log( data, 'search-nextPage' )
                 this.setState( {
                     films: [...data.results],
                     currentPage: pageNumber,
@@ -67,8 +71,9 @@ class StartPage extends Component {
         const numberOfPages = Math.floor( this.state.totalResults / 20 )
         return (
             <Container className="start-page">
-                <Row className="intro-section">
-                    <Col xs="12" md="12" lg="12" className="container">
+                <div className="intro-section">
+                    <Col xs="12" md="12" lg="12"
+                        className="container">
                         <AboutUs />
                         <SearchBox
                             handleSubmit={this.handleSubmit}
@@ -76,8 +81,9 @@ class StartPage extends Component {
                         />
                         <CarouselSlider />
                     </Col>
-                </Row>
-                <div className="some-shit">
+                </div>
+
+                <div className="container">
                     {  /** search result/content */}
                     {this.state.currentFilm === null ?
                         <Row className="mt-5 search-wrapper bg-light">

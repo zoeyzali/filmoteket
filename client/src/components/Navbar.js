@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from "react-router-dom"
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
+import { Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'
 import logo from '../images/logo-2.png'
 import Login from './LoginPage'
 import Logout from './Logout'
@@ -28,43 +28,40 @@ class AppNavbar extends Component {
 
     render() {
         const { user } = this.context
-        console.log( user.firstName, "user nav" )
+        // console.log( user.status, user, "user nav" )
 
         return (
-            <div>
-                <Navbar className="navbar-main" light expand="lg">
-                    <a href="/" className="navbar-brand">
-                        <img src={logo} alt={logo} className="logo"
-                        />
+            <Navbar className="container navbar-main" light expand="md">
+                <a href="/" className="navbar-brand">
+                    <img src={logo} alt={logo} className="logo"
+                    />
                         filmkollen
                         </a>
-                    <NavbarToggler
-                        id="nav-toggle-icon"
-                        onClick={this.toggle} />
-                    <Collapse
-                        isOpen={this.state.isOpen} navbar>
-                        <Nav className="mx-auto" navbar>
-                            <NavLink className="nav-link"
-                                exact to="/">Home</NavLink>
-                            <NavLink className="nav-link"
-                                to="/films">Films</NavLink>
-                            <NavLink className="nav-link"
-                                to="/festivals">Festivals</NavLink>
-                            <NavLink to="/profile" className="nav-link">
-                                { // {user !== undefined ? user.firstName + " " + user.lastName : "Profile"}
-                                }
-                                Profile
-                            </NavLink>
-                            <NavItem className="nav-link">
+                <NavbarToggler
+                    id="nav-toggle-icon"
+                    onClick={this.toggle} />
+                <Collapse
+                    isOpen={this.state.isOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        
+                        <NavLink className="nav-link"
+                            exact to="/">Home</NavLink>
+                        <NavLink className="nav-link"
+                            to="/films">Films</NavLink>
+                        <NavLink className="nav-link"
+                            to="/festivals">Festivals</NavLink>
+                        <NavLink to="/profile" className="nav-link">
+                            {user && !user.status ? user.firstName + " " + user.lastName : "Profile"}
+                        </NavLink>
+                        {!user.status ? (
+                            <Logout />
+                        ) : (
                                 <Login />
-                            </NavItem>
-                            <NavItem className="nav-link">
-                                <Logout />
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+                            )
+                        }
+                    </Nav>
+                </Collapse>
+            </Navbar>
         )
     }
 }

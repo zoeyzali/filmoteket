@@ -1,5 +1,6 @@
 import React from 'react'
-import { Jumbotron, Button } from 'reactstrap'
+import { Jumbotron } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const AboutUs = () => {
     return (
@@ -12,10 +13,10 @@ const AboutUs = () => {
                     </h2>
                 <hr className="my-2" />
                 <p className="lead">
-                    <Button className="btn btn-outline d-block jumboBtn"
+                    <Link to={`/films`} className="btn btn-outline d-block jumboBtn"
                         color="light">
                         FILMS
-                        </Button>
+                        </Link>
                 </p>
             </Jumbotron>
         </div>

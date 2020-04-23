@@ -20,3 +20,4 @@ client/src/utils/api-request.js
 server/routes/festivalsRoute.js
 server/models/Festival.js
 server/models/Prize.js
+client/src/components/FetchFestivals.js

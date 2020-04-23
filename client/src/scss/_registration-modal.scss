@@ -15,10 +15,10 @@
     }
 
     h2 {
-      font-family: 'Alegreya', sans-serif;
-      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
       color: #fff;
-
+      letter-spacing: 0.025rem;
     }
   }
 
@@ -36,8 +36,8 @@
     display: inline;
     text-decoration: underline;
     text-decoration-color: $main-red;
-    font-size: 1rem;
-    color: #020101de !important;
+    // font-size: 1rem;
+    color: $main-black !important;
 
   }
 }

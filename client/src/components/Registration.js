@@ -18,21 +18,22 @@ class Registration extends Component {
             closeAll: false,
         }
     }
+
     toggle = () => {
-        this.setState( prevState => ( { modal: !prevState.modal } )
-        )
+        this.setState( { modal: !this.state.modal } )
     }
 
     toggleNested = () => {
         this.setState( {
             nestedModal: !this.state.nestedModal,
-            closeAll: false
+            closeAll: false,
         } )
     }
 
     toggleAll = () => {
         this.setState( {
             nestedModal: !this.state.nestedModal,
+            modal: !this.state.modal,
             closeAll: true,
         } )
     }
@@ -51,7 +52,6 @@ class Registration extends Component {
             lastName,
             email,
             password,
-            signUpMssg,
         } = this.state
 
         this.setState( {
@@ -69,7 +69,7 @@ class Registration extends Component {
                 lastName: lastName,
                 email: email,
                 password: password,
-                signUpMssg: signUpMssg,
+                // signUpMssg: signUpMssg,
             } ),
         } ).then( res => res.json() )
             .then( json => {
@@ -77,26 +77,28 @@ class Registration extends Component {
                 if ( json.success ) {
                     this.setState( {
                         signUpMssg: json.successMssg,
-                        isLoading: false,
+                        // isLoading: false,
                         firstName: '',
                         lastName: '',
                         email: '',
                         password: '',
-                        closeAll: true,
+                        modal: false,
+                        nestedModal: true
                     } )
                 } else {
                     this.setState( {
                         successMssg: json.errorMssg,
-                        isLoading: false,
+                        // isLoading: false,
+                        modal: true,
                     } )
                 }
             } )
     }
-    componentDidMount() {
-        this.setState( {
-            isLoading: false
-        } )
-    }
+    // componentDidMount() {
+    //     this.setState( {
+    //         isLoading: false,
+    //     } )
+    // }
     render() {
         return (
             <React.Fragment>
@@ -118,7 +120,8 @@ class Registration extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <div className="text-center p-4">
-                            <Form>
+                            <Form
+                            >
                                 <FormGroup>
                                     <Input
                                         type="text"
@@ -145,7 +148,6 @@ class Registration extends Component {
                                         value={this.state.email}
                                         onChange={this.handleChange}
                                     />
-
                                 </FormGroup>
 
                                 <FormGroup>
@@ -169,22 +171,27 @@ class Registration extends Component {
                                 type="submit"
                                 className="btn btn-outline mx-auto"
                                 color="light"
-                                onClick={this.toggleNested}>
+                                // onClick={this.handleSubmit}
+                                onClick={this.toggleNested}
+                            >
                                 SUBMIT
                                 </Button>
                             <Modal
                                 isOpen={this.state.nestedModal}
-                                toggle={this.toggleNested}
-                                onClosed={this.state.closeAll ? this.toggle : undefined}>
+                                onClick={this.handleSubmit}
+                            >
                                 <ModalBody className="nested-modal">
                                     <p className="text-center">
                                         Registration completed!
-                                        </p>
+                                         {this.state.signUpMssg}
+                                    </p>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button
                                         color="success"
-                                        onClick={this.handleSubmit} onClosed={this.state.closeAll ? this.toggleAll : undefined}>
+                                        onClick={this.toggleAll}
+                                    // onClose={this.state.closeAll ? this.toggleAll : undefined}
+                                    >
                                         Close All
                                         </Button>
                                 </ModalFooter>

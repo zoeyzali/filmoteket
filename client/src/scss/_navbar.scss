@@ -4,67 +4,76 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  font-family: 'Poppins', sans-serif !important;
 
   .navbar-brand {
-    font-family: 'Questrial', sans-serif !important;
     font-weight: 700;
-    letter-spacing: 1.8px;
-    font-size: 1.6rem;
+    letter-spacing: -0.06rem;
+    font-size: 1.5em;
 
     img.logo {
       width: 115px;
-      height: 130px;
+      height: 125px;
+      margin-top: -5px;
     }
   }
 
   .navbar-toggler {
     padding: 0.25rem 0.5rem;
-    font-size: 25px;
     border: none !important;
     outline: none;
   }
 
-  #nav-toggle-icon {
-    color: $main-red;
-  }
+  .navbar-nav {
+    padding: 0rem 2rem 0rem 0rem;
 
-  a,
-  .nav-link,
-  li.nav-item {
-    font-size: 15px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    justify-content: flex-end;
-    color: #020101de;
-    display: inline !important;
-    padding: 0.5rem 0.8rem;
+    .logout-btn {
+      background-color: $main-red;
+      border-radius: 0.2rem;
+      margin-left: -0.3rem;
+    }
 
-    &.active {
-      text-decoration: underline;
-      text-decoration-color: $main-red;
+    a,
+    .nav-link,
+    .nav-item {
+      text-align: center;
+      justify-content: flex-end;
+      display: inline !important;
+      padding: 0.3rem 0.65rem;
+      font-size: 15px;
+      color: $main-black;
+      margin-inline-start: -0.3rem;
+
+      &.active {
+        text-decoration: 1px underline;
+        text-decoration-color: $main-red;
+      }
+    }
+
+    #nav-toggle-icon {
+      color: $main-red;
+    }
+
+    .login-btn {
+      color: $main-black;
+      border-radius: 0.2rem;
+      text-transform: uppercase;
+      background-color: #fff;
+      border: 1px solid $main-red;
+      text-align: center;
+      font-weight: 500;
+      outline: none !important;
+    }
+
+    span.navbar-toggler-icon {
+      color: $main-red
     }
   }
 
-  .login-btn {
-    color: $main-red;
-    border-radius: 0.2rem;
-    text-transform: uppercase;
-    // background-color: #ffffff;
-    border: none;
-    // display: inline;
-    // text-align: center;
-  }
-
-
-  .logout-btn {
-    background-color: $main-red;
-    border-radius: 0.2rem;
-    text-transform: uppercase;
-    // text-align: center;
-  }
-
-
-  span .navbar-toggler-icon {
-    color: $main-red
+  @media all and (max-width:600px) {
+    .logout-btn {
+      max-width: 50px;
+      max-height: 50px;
+    }
   }
 }

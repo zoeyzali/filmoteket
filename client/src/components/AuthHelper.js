@@ -12,10 +12,11 @@ export const AuthHelper = ( props ) => {
             const response = await fetch( '/users/login' )
                 .catch( err => console.log( err, "profile error" ) )
             const result = {
-                user: await response.json(), status: response.status
+                user: await response.json(),
+                status: response.status
             }
             if ( result.user ) {
-                console.log( result.user, "result.user" )
+                console.log( result, "result.user" )
                 isAuthenticated( result.user )
             } else {
                 isAuthenticated( result.status )
@@ -30,11 +31,11 @@ export const AuthHelper = ( props ) => {
 
     useEffect( () => {
         checkLogin()
+        // eslint-disable-next-line 
     }, [] )
 
-    if ( !isAuthenticated ) {
-        return ( <p>You need to login! </p> )
-    }
+
+
     if ( isLoading )
         return (
             <div className="loading pt-6 bg-light">

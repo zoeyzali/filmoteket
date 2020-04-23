@@ -1,19 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component, createContext } from 'react'
 
-export const UserContext = React.createContext()
 
-class UserProvider extends Component {
+export const UserContext = createContext()
+class UserContextProvider extends Component {
     state = {
-        user: {}
+        user: {},
+        // status: null
     }
 
     isAuthenticated = user => {
         this.setState( {
-            user: user
+            user: user ? user : user.status
         } )
+        // console.log( "user from isAuth Fn", user, user.status )
     }
 
-    logOutUser = () => {
+    logoutUser = () => {
         this.setState( {
             user: ""
         } )
@@ -25,7 +27,7 @@ class UserProvider extends Component {
                 value={{
                     ...this.state,
                     isAuthenticated: this.isAuthenticated,
-                    logOutUser: this.logOutUser
+                    logoutUser: this.logoutUser
                 }}>
                 {this.props.children}
             </UserContext.Provider>
@@ -36,4 +38,4 @@ class UserProvider extends Component {
 const UserConsumer = UserContext.Consumer
 
 
-export { UserProvider, UserConsumer } 
+export { UserContextProvider, UserConsumer } 
