@@ -1,0 +1,107 @@
+.details__wrapper {
+    min-height: 100vh;
+    width: 100%;
+    margin: 1rem auto;
+    padding: 1rem 0.8rem;
+    background-color: snow;
+
+    img.main__poster {
+        box-shadow: 5px 10px 10px 14px #eee;
+        border-radius: 0.2rem;
+    }
+
+    .details__inner {
+        text-transform: uppercase;
+        color: $main-black;
+        padding: 0.5rem;
+
+        h2 {
+            line-height: 1;
+        }
+
+        span {
+            display: inline-block;
+            color: #333;
+            letter-spacing: 0.05rem;
+            margin-inline-end: 0.4rem;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        span.tagline__span {
+            margin-bottom: 1rem;
+            letter-spacing: 0.095rem;
+            font-size: 1em;
+        }
+
+        h4 {
+            margin: 0.8rem auto 0.4rem;
+        }
+
+        .details__content {
+            text-transform: none;
+        }
+
+        .cast__details {
+
+            .cast__list {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+                // justify-content: space-between;
+
+                li {
+                    flex: 1;
+                    list-style: none;
+                    margin-inline-end: 0.5rem;
+
+
+                    &:last-child() {
+                        margin-inline-end: 0;
+                    }
+
+                    .cast_img__rounded {
+                        width: 85px;
+                        height: 95px;
+                        // background-color: maroon;
+
+                        .img-thumbnail {
+                            padding: 0rem;
+                            width: 100%;
+                            height: 100%;
+                            object-position: center;
+                            border: none;
+                            border-radius: 50%;
+                            filter: contrast(150%);
+                            // mix-blend-mode: overlay;
+                            // box-shadow: 0 8px 8px 10px #eee;
+
+                            &:hover {
+                                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+                            }
+                        }
+                    }
+
+                    span {
+                        text-transform: none;
+                        text-align: center;
+                        letter-spacing: normal;
+                    }
+                }
+            }
+        }
+    }
+
+    .details__gallery {
+        margin-top: 0.8rem;
+
+        .backdrop__img {
+            filter: contrast(120%);
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 0.2rem;
+            // max-width: 400px;
+        }
+    }
+
+}
