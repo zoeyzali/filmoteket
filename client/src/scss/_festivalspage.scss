@@ -3,50 +3,119 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  font-family: 'Alegreya',
-    sans-serif;
-}
+  // font-family: 'Titillium Web', sans-serif;
 
-.img-fluid {
-  width: 260px;
-  height: auto;
-}
-
-.content-wrapper {
-  background-color: $lightest-gray;
-  color: black;
-  padding: 15px 5px;
-  margin-top: 2rem;
-
-  transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-  .content-header {
-    font-size: 3rem;
-    letter-spacing: 2.5px;
+  .img-fluid {
+    width: 260px;
+    height: auto;
   }
 
-  .content {
-    font-family: 'Questrial', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-  }
-}
-
-.Cannes,
-.Berlinale {
-  h1 {
-    color: crimson;
-    text-align: center;
-    font-size: 6rem;
-    letter-spacing: -2.5px;
-  }
-
-
-  @media (min-width: 320px) and (max-width: 425px) {
+  .Cannes,
+  .Berlinale {
     h1 {
-      font-size: 3rem;
+      color: $main-red;
+      text-align: center;
+      // font-size: 6rem;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+  }
+
+  .content-wrapper {
+    background-color: $lightest-gray;
+    color: $main-black;
+    padding: 1.5rem 1rem;
+    margin-top: 2.5rem;
+    transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    .content-header {
+      // font-size: 2em;
+      letter-spacing: 0.25rem;
+      font-weight: 700;
+    }
+
+    .content {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 1em;
+    }
+
+    a.main__btn {
+      display: block;
+      padding: 0.35rem 0.5rem;
+      text-transform: uppercase;
+      margin: 0.4rem auto;
+      text-align: center;
+      background-color: $main-black;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      width: 50%;
+      color: #fff;
+      letter-spacing: 0.2rem;
+    }
+  }
+}
+
+
+/** Add Festival Page*/
+.add__festivalspage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  text-align: center;
+
+  .form__wrapper {
+    form {
+      background: snow;
+      width: 100%;
+      max-width: 600px;
+      padding: 0.8rem 0.3rem;
+      margin: 1rem auto;
+    }
+
+    .form-control,
+    .form-control-file,
+    .form-control-range {
+      text-align: center;
+      margin: 0.3rem auto;
+      height: 40px;
+      padding: 0 0.5rem;
+      width: 80%;
+      font-size: 0.85em;
+      outline: none;
+    }
+
+    .main__btn {
+      display: block;
+      padding: 0.3rem 0.6rem;
+      text-transform: uppercase;
+      margin: 0.4rem auto;
+      text-align: center;
+      background-color: $main-black;
+      border: none;
+      outline: none;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 600px) {
+    h1 {
       word-wrap: break-word;
+    }
+  }
+
+  @media screen and (max-width:600px) {
+    form {
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+    }
+
+    .form-control,
+    .form-control-file {
+      width: 80%;
+      margin: 0.3rem auto;
     }
   }
 }

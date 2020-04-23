@@ -5,19 +5,14 @@ import FilmsCannes from './FilmsCannes';
 // import FilmDetails from './FilmDetails';
 
 class FilmsParentContainer extends Component {
-    constructor( props ) {
-        super( props )
-        this.state = {
-        }
-    }
-
-
     render() {
         return (
-            <Container className="films-page bg-light">
-                <Row className="mt-2">
-                    <div className="films-header">
+            <Container className="films-page">
+                <Row className="mt-3">
+                    <div className="films-header text-center">
                         <h1>Winners through the Years</h1>
+                        <h4>For Now the last 25 years</h4>
+                        <span>ca. 1994 till date</span>
                         <div className="films-logo-wrapper">
                             <img src={require( '../images/berlinale.png' )} className="img-fluid-logo" alt="berlinale-logo"
                             />
@@ -26,7 +21,7 @@ class FilmsParentContainer extends Component {
                         </div>
                     </div>
                 </Row>
-                <div className="filmslist-wrapper">
+                <div className="filmslist_wrapper">
                     <FilmsCannes />
                     <FilmsBerlinale />
                 </div>

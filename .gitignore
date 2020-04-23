@@ -17,3 +17,7 @@ client/node_modules
 client/src/scss/bootstrap
 client/src/json/films.json
 client/src/utils/api-request.js
+server/routes/festivalsRoute.js
+server/models/Festival.js
+server/models/Prize.js
+client/src/components/FetchFestivals.js

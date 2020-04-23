@@ -1,120 +1,123 @@
 .start-page {
   width: 100%;
+  height: auto;
+  padding: 0.2rem 1rem 1rem;
+  margin-top: -0.4rem;
 
   .jumbotron {
-    width: 100%;
+    // width: 100%;
+    // height: auto;
     background-color: #fff;
     background-image: url('../images/festivalDeCannes.png'), url('../images/berlinale.png');
     background-size: cover;
     background-repeat: no-repeat;
-    color: #db2d43;
-    font-family: 'Alegreya',
-      sans-serif;
-    font-weight: 700;
+    color: $main-red;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 900;
+    padding: 1rem;
+    text-align: center;
+
 
     h1 {
-      font-size: 6rem;
+      font-size: 5rem;
+      letter-spacing: 0.2rem;
     }
 
     .lead {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
+      line-height: 1.2;
     }
 
     .btn {
-      color: #db2d43;
+      background-color: #fff;
+      color: $main-red;
       width: 25%;
       margin: auto;
       font-size: 1.5rem;
-      letter-spacing: 2.5px;
+      letter-spacing: 0.3rem;
       outline: none !important;
+      margin-top: 1.5rem;
 
       &:hover {
-        background-color: #fff;
+        background-color: snow;
       }
+    }
+  }
+
+  form.search_input .search-box.form-control {
+    margin-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 10px 0;
+    border: 1px #333 solid;
+    text-align: center;
+    outline: none !important;
+
+    &::placeholder {
+      letter-spacing: 0.25rem;
+      text-align: center;
     }
   }
 }
 
 .carousel-container {
-  margin-top: 15px;
-  // width: 100%;
+  width: 100%;
+  // max-width: 600px;
+  margin: 20px auto 15px;
+  box-shadow: 0 10px 8px 10px #eee;
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 
   .carousel-slider {
-    background-color: rgb(245, 243, 243);
     z-index: 4;
+    outline: none;
 
     .carousel-img,
     .slick-slide img {
       width: 100%;
-      height: auto;
+      height: 100%;
       mask-image: cross-fade();
       border-radius: 5px;
-      filter: contrast(110%);
+      filter: contrast(150%);
     }
 
-    button.slick-arrow .slick-next .slick-next::before,
-    .slick-prev:before,
-    .slick-next:before {
-      color: #333;
-      font-size: 25px;
+    .slick-next::before {
+      color: #1fb5ff;
+      // font-size: 25px;
+      margin-inline-end: 0.5rem;
+    }
+
+
+    .slick-prev::before {
+      color: #1fb5ff;
+      // font-size: 25px;
+      margin-inline-start: -1rem;
     }
   }
 
-  // .red-box {
-  //   position: absolute;
-  //   background-color: var(--mainWhite);
-  //   height: 400px;
-  //   transform: translateY(-70%);
 
-  //   &.overlay {
-  //     position: relative;
-  //     z-index: 7;
-  //     background-color: maroon;
-  //     mix-blend-mode: overlay;
-  //   }
-  // }
 
 
   .search-content {
-    background-color: crimson;
-    // display: inline;
-  }
-
-  .search-box {
-    margin-top: 2rem;
-    font-family: 'Questrial', sans-serif;
-    font-weight: 300;
-    text-transform: capitalize;
-    font-size: 20px;
-    letter-spacing: 5px;
-    padding: 10px 0;
-    border: 1px #333 solid;
-  }
-}
-
-
-@media (min-width: 320px) and (max-width: 508px) {
-
-  img .carousel-img .slick-slide,
-  .carousel-slider,
-  .slick-track {
-    // width: 100px;
+    background-color: $main-red;
     display: inline;
-    opacity: 1;
   }
 
-  h1 {
-    font-size: 3rem;
-    word-wrap: break-word;
-  }
 
-  // .carousel-slider {
-  //   img .carousel-img {
-  //     height: 100px;
-  //     width: 20%;
-  //   }
-  // }
+
+
+  @media (min-width: 320px) and (max-width: 508px) {
+    h1 {
+      font-size: 3rem;
+      word-wrap: break-word;
+    }
+  }
 }
+
 
 //pagination links
 .pagination-wrapper {
@@ -154,5 +157,12 @@
     margin-right: 4px;
     font-style: normal;
     font-weight: 400;
+  }
+}
+
+@media (min-width: 600px) {
+  .carousel-container {
+    max-width: 900px;
+    width: 100%;
   }
 }

@@ -1,28 +1,142 @@
-.profiles-page {
-    width: 100%;
-    height: auto;
-    padding: 30px 10px;
+ .profiles-page {
+     width: 100%;
+     min-height: 100vh;
+     padding: 1rem 0.5rem;
 
-    .row {
-        display: flex;
-        justify-content: space-between;
-    }
+     .grid__wrapper {
+         display: flex;
+         flex-wrap: wrap;
+         margin: 0.8rem auto;
+         //  padding: 0.3rem;
 
-    .col {
-        .col-2 {
-            align-items: flex-end;
-        }
-    }
+         aside {
+             flex-basis: 250px;
+             margin-inline-end: 0.4rem;
+             text-align: center;
 
-    ul {
-        li {
-            list-style: none;
-        }
-    }
+             .profile__img {
+                 max-width: 150px;
+                 object-fit: cover;
+                 margin-top: -25px;
+                 margin-left: auto;
+                 margin-right: auto;
+                 display: block;
+             }
+         }
 
-    h2 {
-        font-family: 'Alegreya', sans-serif;
-        font-weight: 600;
-        letter-spacing: 2.4px;
-    }
-}
+         main {
+             flex: 1;
+             display: flex;
+             justify-content: center;
+             //  align-items: flex-start;
+
+             .col__1_wrapper {
+                 margin: 1rem auto 0.5rem;
+                 padding-top: 1rem;
+
+                 .col__1 {
+                     display: flex;
+                     flex-wrap: wrap;
+                     margin: 0;
+                     padding: 0;
+
+                     h2 {
+                         text-align: center;
+                     }
+
+                     li {
+                         list-style: none !important;
+                         margin-inline-end: 0.15rem;
+
+                         .list__item_card {
+                             display: flex;
+                             flex-direction: column;
+                             overflow: hidden;
+                             border-radius: 5px;
+                             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+                             transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+                             img {
+                                 max-width: 180px;
+                                 height: 250px;
+                             }
+
+                             .list__item_content {
+                                 display: flex;
+                                 flex: 1 0 auto;
+                                 flex-direction: column;
+
+                                 span {
+                                     letter-spacing: 0.1rem;
+                                     padding: 0.15rem;
+                                 }
+                             }
+                         }
+                     }
+                 }
+             }
+
+             .col__2_wrapper {
+                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+                 border-radius: 0.2rem;
+                 margin: 1rem auto 0.5rem;
+                 padding: 0.5rem 0.3rem;
+                 margin-inline-end: 0.6rem;
+                 order: -1;
+
+                 .col__2 {
+                     display: flex;
+                     flex-wrap: wrap;
+
+
+                     a {
+                         text-decoration: none;
+                         color: $main-black;
+                         flex: 1;
+
+                         li {
+                             list-style: none !important;
+
+                             .img-thumbnail {
+                                 border: none;
+                                 border-radius: 0.2rem;
+                                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+                                 padding: 0;
+                                 max-width: 150px;
+                             }
+
+                             span {
+                                 display: block;
+                                 font-weight: 500;
+                             }
+                         }
+                     }
+                 }
+             }
+
+         }
+     }
+
+     h2 {
+         letter-spacing: 0.2rem;
+     }
+ }
+
+
+ @media screen and (max-width:600px) {
+     .grid__wrapper {
+         display: block;
+     }
+
+     main {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+
+         .col__1,
+         .col__2 {
+             margin: 0 auto;
+
+         }
+     }
+ }

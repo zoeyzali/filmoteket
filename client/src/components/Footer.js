@@ -3,10 +3,10 @@ import { Container, Row, Col } from 'reactstrap'
 
 class Footer extends Component {
     render() {
-        return <Container fluid className="footer bg-light">
+        return <Container fluid className="footer text-white bg-dark">
             <Row>
                 <Col xs="12" md="4" lg="4" className="text-center">
-                    <a className="text-dark" href="mailto:zoeecoding@gmail.com">
+                    <a className="text-white" href="mailto:zoeecoding@gmail.com">
                         info@filmkollen.se</a>
                 </Col>
                 <Col xs="12" md="4" lg="4" className="text-center">

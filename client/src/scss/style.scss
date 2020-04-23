@@ -1,11 +1,13 @@
 @import './bootstrap/bootstrap.scss';
+@import 'fonts-mixin';
 @import 'custom-variables';
 @import 'body-related';
 @import 'navbar';
+@import 'startpage';
 @import 'registration-modal';
 @import 'user-profile';
-@import 'startpage';
 @import 'filmspage';
+@import 'film-details';
 @import 'festivalspage';
 @import 'contactpage';
 @import 'footer';

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Link, NavLink } from "react-router-dom"
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap'
+import { NavLink } from "react-router-dom"
+import { Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap'
 import logo from '../images/logo-2.png'
 import Login from './LoginPage'
-import Registration from './Registration'
+import Logout from './Logout'
+// import Registration from './Registration'
 import { UserContext } from '../context/UserContext'
 
 
@@ -26,20 +27,63 @@ class AppNavbar extends Component {
     }
 
     render() {
-        const { user, logOutUser } = this.context
+        const { user } = this.context
+        // console.log( user.status, user, "user nav" )
 
-        const loginRegLink = (
-            <ul className="navbar-nav mx-auto">
-                <li className="nav-item">
-                    <Login />
-                </li>
+        return (
+            <Navbar className="container navbar-main" light expand="md">
+                <a href="/" className="navbar-brand">
+                    <img src={logo} alt={logo} className="logo"
+                    />
+                        filmkollen
+                        </a>
+                <NavbarToggler
+                    id="nav-toggle-icon"
+                    onClick={this.toggle} />
+                <Collapse
+                    isOpen={this.state.isOpen} navbar>
+                    <Nav className="ml-auto" navbar>
+                        
+                        <NavLink className="nav-link"
+                            exact to="/">Home</NavLink>
+                        <NavLink className="nav-link"
+                            to="/films">Films</NavLink>
+                        <NavLink className="nav-link"
+                            to="/festivals">Festivals</NavLink>
+                        <NavLink to="/profile" className="nav-link">
+                            {user && !user.status ? user.firstName + " " + user.lastName : "Profile"}
+                        </NavLink>
+                        {!user.status ? (
+                            <Logout />
+                        ) : (
+                                <Login />
+                            )
+                        }
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        )
+    }
+}
+
+export default AppNavbar
+
+
+
+/**              <NavItem>
+                                <NavLink className="nav-link"
+                                    to="/contact">Contact</NavLink>
+                            </NavItem>
+
+              const loginRegLink = (
+            <ul className="mx-auto">
                 <li className="nav-item">
                     <Registration />
                 </li>
             </ul>
         )
-        const userLink = (
-            <ul className="navbar-nav">
+                const userLink = (
+            <ul className="">
                 <li className="nav-item">
                     <Link to="/profile" className="nav-link">
                         Profile
@@ -47,47 +91,5 @@ class AppNavbar extends Component {
                 </li>
             </ul>
         )
-
-        return (
-            <div>
-                <Navbar className="navbar-main" light expand="lg">
-                    <a href="/" className="navbar-brand">
-                        <img src={logo} alt={logo} className="logo"
-                        />
-                        filmkollen</a>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    exact to="/">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/films">Films</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/festivals">Festivals</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/contact">Contact</NavLink>
-                            </NavItem>
-
-                            {user ? userLink : loginRegLink}
-
-                            <li className="nav-item logout-btn">
-                                <Link to="/" onClick={logOutUser} className="nav-link">
-                                    Logout
-                                </Link>
-                            </li>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
-        )
-    }
-}
-
-export default AppNavbar 
+ {user ? userLink : loginRegLink}
+                            */

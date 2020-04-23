@@ -7,13 +7,13 @@ class CarouselSlider extends Component {
     render() {
         const settings = {
             dots: true,
-            infinite: false,
+            infinite: true,
             autoPlay: true,
             focusOnSelect: true,
             fade: true,
-            speed: 100,
+            speed: 300,
             cssEase: 'linear',
-            slidesToScroll: 4,
+            slidesToScroll: 1,
             slidesToShow: 1,
             mobileFirst: true,
             adaptiveHeight: true,

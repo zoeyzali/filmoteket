@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import Login from './LoginPage'
+import { NavLink } from 'react-router-dom'
 
 class Registration extends Component {
     constructor( props ) {
@@ -17,21 +18,22 @@ class Registration extends Component {
             closeAll: false,
         }
     }
+
     toggle = () => {
-        this.setState( prevState => ( { modal: !prevState.modal } )
-        )
+        this.setState( { modal: !this.state.modal } )
     }
 
     toggleNested = () => {
         this.setState( {
             nestedModal: !this.state.nestedModal,
-            closeAll: false
+            closeAll: false,
         } )
     }
 
     toggleAll = () => {
         this.setState( {
             nestedModal: !this.state.nestedModal,
+            modal: !this.state.modal,
             closeAll: true,
         } )
     }
@@ -50,7 +52,6 @@ class Registration extends Component {
             lastName,
             email,
             password,
-            signUpMssg,
         } = this.state
 
         this.setState( {
@@ -68,7 +69,7 @@ class Registration extends Component {
                 lastName: lastName,
                 email: email,
                 password: password,
-                signUpMssg: signUpMssg,
+                // signUpMssg: signUpMssg,
             } ),
         } ).then( res => res.json() )
             .then( json => {
@@ -76,36 +77,37 @@ class Registration extends Component {
                 if ( json.success ) {
                     this.setState( {
                         signUpMssg: json.successMssg,
-                        isLoading: false,
+                        // isLoading: false,
                         firstName: '',
                         lastName: '',
                         email: '',
                         password: '',
-                        closeAll: true,
+                        modal: false,
+                        nestedModal: true
                     } )
                 } else {
                     this.setState( {
                         successMssg: json.errorMssg,
-                        isLoading: false,
+                        // isLoading: false,
+                        modal: true,
                     } )
                 }
             } )
     }
-    componentDidMount() {
-        this.setState( {
-            isLoading: false
-        } )
-    }
-
+    // componentDidMount() {
+    //     this.setState( {
+    //         isLoading: false,
+    //     } )
+    // }
     render() {
         return (
-            <div>
-                <Button
-                    className="nav-link"
-                    color="light"
-                    onClick={this.toggle}>
+            <React.Fragment>
+                <NavLink to=""
+                    onClick={this.toggle}
+                    className="reg-nav-link nav-link"
+                >
                     Sign Up
-                    </Button>
+                    </NavLink>
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -118,14 +120,14 @@ class Registration extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <div className="text-center p-4">
-                            <Form>
+                            <Form
+                            >
                                 <FormGroup>
                                     <Input
                                         type="text"
                                         placeholder="Jane"
                                         name="firstName"
                                         value={this.state.firstName} onChange={this.handleChange} />
-                                    {/* <FormFeedback valid>Sweet! that is one cool name!</FormFeedback> */}
                                 </FormGroup>
 
                                 <FormGroup>
@@ -136,7 +138,6 @@ class Registration extends Component {
                                         value={this.state.lastName}
                                         onChange={this.handleChange}
                                     />
-                                    {/* <FormFeedback>Oh noes! that name is already taken</FormFeedback> */}
                                 </FormGroup>
 
                                 <FormGroup>
@@ -147,7 +148,6 @@ class Registration extends Component {
                                         value={this.state.email}
                                         onChange={this.handleChange}
                                     />
-                                    { /* <FormFeedback>Type in a valid email</FormFeedback> */}
                                 </FormGroup>
 
                                 <FormGroup>
@@ -157,37 +157,41 @@ class Registration extends Component {
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.handleChange} />
-                                    { /* <FormFeedback valid>Sweet! that should do it!</FormFeedback> */}
                                 </FormGroup>
                             </Form>
 
-                            <div className="">
+                            <FormGroup className="">
                                 <span>
-                                    Already a member?
-                                 <Login text={this.props.text}
-                                        style={{ display: "inline-block" }}
-                                    />
+                                    Go Back To {" "}
+                                    <Login />
                                 </span>
-                            </div>
+                            </FormGroup>
+
                             <Button
                                 type="submit"
-                                className="btn btn-info mx-auto submit-btn"
-                                onClick={this.toggleNested}>
-                                Submit
+                                className="btn btn-outline mx-auto"
+                                color="light"
+                                // onClick={this.handleSubmit}
+                                onClick={this.toggleNested}
+                            >
+                                SUBMIT
                                 </Button>
                             <Modal
                                 isOpen={this.state.nestedModal}
-                                toggle={this.toggleNested}
-                                onClosed={this.state.closeAll ? this.toggle : undefined}>
+                                onClick={this.handleSubmit}
+                            >
                                 <ModalBody className="nested-modal">
                                     <p className="text-center">
                                         Registration completed!
-                                        </p>
+                                         {this.state.signUpMssg}
+                                    </p>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button
                                         color="success"
-                                        onClick={this.handleSubmit} onClosed={this.state.closeAll ? this.toggleAll : undefined}>
+                                        onClick={this.toggleAll}
+                                    // onClose={this.state.closeAll ? this.toggleAll : undefined}
+                                    >
                                         Close All
                                         </Button>
                                 </ModalFooter>
@@ -195,7 +199,7 @@ class Registration extends Component {
                         </div>
                     </ModalBody>
                 </Modal>
-            </div>
+            </React.Fragment>
         )
     }
 }

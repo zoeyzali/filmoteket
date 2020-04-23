@@ -1,32 +1,28 @@
 import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap'
-import { withRouter } from 'react-router-dom'
-import { UserContext } from '../context/UserContext'
+import Registration from './Registration'
+
 
 class Login extends Component {
     constructor( props ) {
         super( props )
         this.state = {
+            email: '',
+            password: '',
             loggedIn: false,
             modal: false,
-            text: 'Sign In!',
-            user: {
-                email: '',
-                password: '',
-            },
-            mssg: "",
+            mssg: false,
             emailErr: false,
             passErr: false,
         }
-        const { user, isAuthenticated } = UserContext
-        console.log( user, isAuthenticated, 'from login' )
     }
+
 
 
     toggle = () => {
         this.setState( prevState => ( {
-            modal: !prevState.modal,
-            mssg: ""
+            modal: !prevState.modal
+
         } ) )
     }
 
@@ -40,12 +36,11 @@ class Login extends Component {
     handleLogin = ( e ) => {
         e.preventDefault()
         const { email, password } = this.state
-        const { history } = this.props
+        // const { history } = this.props
         if ( email === "" || !email ) {
             return this.setState( {
                 emailErr: true,
                 modal: true,
-                // mssg: ""
             } )
         }
         if ( password === "" || !password ) {
@@ -55,7 +50,6 @@ class Login extends Component {
                 emailErr: false,
             } )
         }
-
         fetch( '/users/login', {
             method: "POST",
             headers: {
@@ -66,24 +60,13 @@ class Login extends Component {
                 password: password
             } )
         } )
-            .then( res => {
-                if ( res.ok ) {
-                    // console.log( res, "just res" )
-                    return res.json()
-                } else {
-                    if ( !res || res === undefined )
-                        return this.setState( {
-                            modal: true,
-                            loggedIn: false,
-                            mssg: ""
-                        } )
-                }
-            } )
+            .then( res => res.json() )
             .then( data => {
-                console.log( data, 'loginResp' )
+                console.log( data, 'data login data' )
                 this.setState( {
-                    user: data,
-                    mssg: data.successMssg,
+                    email: data.email,
+                    password: data.password,
+                    mssg: false,
                     modal: false,
                     emailErr: false,
                     passErr: false,
@@ -93,7 +76,7 @@ class Login extends Component {
                     return this.setState( {
                         modal: true,
                         loggedIn: false,
-                        mssg: "Bull"
+                        mssg: true
                     } )
                 }
                 else {
@@ -107,37 +90,40 @@ class Login extends Component {
             .catch( error => this.setState( {
                 modal: true,
                 loggedIn: false,
+                mssg: true,
                 error
             } ) )
-        history.push( `/profile` )
+        window.location.replace( '/profile' )
+        // this.props.history.push( `/profile` )
     }
+
 
     componentDidMount() {
         this.setState( {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
             emailErr: false,
             passErr: false,
             modal: false,
-            loggedIn: true
+            // loggedIn: true
         } )
     }
 
     render() {
-        const { emailErr, passErr, mssg, loggedIn } = this.state
-        // const { isAuthenticated } = this.state.user
-        // console.log( isAuthenticated, "mssg & user" )
-
+        // this.checkForLogin()
+        const { emailErr, passErr, mssg } = this.state
         const errorMssg = "Field cannot be empty"
         const confirmationMssg = "All good"
-        const errorish = "Please double check email or password" + mssg
+        const errorish = "Please double check email or password"
 
+        /**      */
+        // console.log( errorish, "errorish" )
         return (
-            <div>
+            <React.Fragment>
                 <Button
-                    className="nav-link login-btn"
                     onClick={this.toggle}
-                    color="light"
+                    // color="light"
+                    className="login-btn btn btn-outline"
                 >
                     Login
                     </Button>
@@ -148,21 +134,21 @@ class Login extends Component {
                     className={this.props.className}
                 >
                     <ModalHeader
-                        className=""
                         toggle={this.toggle}>
                         <div className="">
-                            <h2>{this.state.text}</h2>
+                            <h2>Sign In</h2>
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        {!loggedIn ? <span className="mssg" style={{ color: "red" }}>
+                        {mssg ? <span
+                            className="mssg"
+                            style={{ color: "red" }}>
                             {errorish}
                         </span>
                             : null
                         }
                         <Form onSubmit={this.handleLogin}
                             className="text-center p-3">
-
                             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                 <Input
                                     type="email"
@@ -194,26 +180,34 @@ class Login extends Component {
                                 }
                             </FormGroup>
                             <FormGroup className="">
-
                                 <input type="checkbox" /> {" "}
                                 <span>Remember Me</span>
+                                <br />
+                                <span>Not a member?</span>
+                                <Registration />
                             </FormGroup>
+
                             <Button type="submit"
-                                mssg={confirmationMssg}
-                                className="light"
-                                onClick={this.toggle}>Submit
+                                color="light"
+                                onClick={this.toggle}>
+                                SUBMIT
                                 </Button>
+                            {mssg &&
+                                <span
+                                    className="mssg"
+                                    style={{ color: "green" }}>
+                                    {confirmationMssg}
+                                </span>
+                            }
                         </Form>
                     </ModalBody>
                 </Modal>
-            </div>
+            </React.Fragment>
         )
     }
 }
 
 
-//<span className="mssg" style={{ color: "green" }}>
-// { confirmationMssg }
-//  </span>  
 
-export default withRouter( Login )
+
+export default Login
