@@ -1,6 +1,6 @@
 const dotenv = require( 'dotenv' )
 dotenv.config()
-console.log( `My test variable is ${process.env.TEST_VAR} ` )
+// console.log( `My test variable is ${process.env.TEST_VAR} ` )
 
 const express = require( 'express' )
 const app = express()
@@ -74,4 +74,3 @@ server.listen( Port, () => {
     console.log( `Server running at ${Port}` )
 } )
 
-// module.exports = app
