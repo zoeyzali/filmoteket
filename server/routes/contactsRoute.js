@@ -2,7 +2,6 @@ const express = require( 'express' )
 const contact = express.Router()
 const nodemailer = require( 'nodemailer' )
 
-
 contact.post( '/contact/form', ( req, res ) => {
     console.log( req.body )
     nodemailer.createTestAccount( ( err, account ) => {

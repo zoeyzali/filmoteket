@@ -4,8 +4,6 @@ const encryptPassword = require( '../config/encryptPassword' )
 const User = require( '../models/User' )
 const Film = require( '../models/Film' )
 
-
-
 users.post( '/signup', async ( req, res ) => {
     const { email, password } = req.body
     const user = new User( {
@@ -51,9 +49,9 @@ users.post( '/login', async ( req, res ) => {
 } )
 
 users.get( '/login', ( req, res ) => {
-    res.json( req.session.user ?
-        req.session.user :
-        { status: 'not logged in' }
+    res.json( req.session.user
+        ? req.session.user
+        : { status: 'not logged in' }
     )
 } )
 
@@ -67,12 +65,10 @@ users.get( '/logout', ( req, res ) => {
     }
 } )
 
-
 users.get( '/', async ( req, res ) => {
     let users = await User.find()
     res.status( 200 ).json( users )
 } )
-
 
 // Delete a user by ID
 users.delete( '/:id', async ( req, res ) => {
@@ -95,16 +91,13 @@ users.delete( '/:id', async ( req, res ) => {
     }
 } )
 
-
 users.post( '/:id/create-favorite', async ( req, res ) => {
-    // console.log( req.body )
     const { user } = await req.session
     if ( !user ) {
         return res.status( 400 ).json( { errorMssg: "You aren't logged in" } )
     }
     const currentUser = await User.findById( user._id )
     const favoriteFilm = await Film.findOne( req.body )
-
     if ( !favoriteFilm ) {
         return res.status( 500 ).json( {
             success: false,
@@ -124,11 +117,9 @@ users.post( '/:id/create-favorite', async ( req, res ) => {
             successMssg: "Film added",
             favoriteFilm
         } )
-        // console.log( currentUser, "currUser" )
         // res.status.end()
     }
 } )
-
 
 users.get( '/:id/favorites', async ( req, res ) => {
     const { user } = await req.session
@@ -150,7 +141,6 @@ users.get( '/:id/favorites', async ( req, res ) => {
                 lists: currentUser.lists,
                 // user: currentUser
             } )
-            console.log( currentUser.lists, "res list" )
         }
     } catch ( error ) {
         res.status( 500 ).send( error )
@@ -168,7 +158,7 @@ users.delete( '/favorites/:id', async ( req, res ) => {
         if ( !favToDelete || favToDelete._id === null ) {
             return res.status( 400 ).json( {
                 success: false,
-                errorMssg: "favToDelete can't be deleted?"
+                errorMssg: "favToDelete can't be deleted."
             } )
         }
         if ( currentUser.lists.includes( favToDelete._id ) ) {
@@ -202,13 +192,11 @@ users.delete( '/favorites/:id', async ( req, res ) => {
 //             return res.status( 200 ).json( {
 //                 successMssg: "Populated lists success?",
 //                 user: currentUser,
-
 //             } )
 //         }
 //     } catch ( error ) {
 //         return res.status( 500 ).send( error )
 //     }
 // } )
-
 
 module.exports = users

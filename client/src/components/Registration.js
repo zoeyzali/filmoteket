@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import Login from './LoginPage'
 import { NavLink } from 'react-router-dom'
-
 class Registration extends Component {
     constructor( props ) {
         super( props )
@@ -56,7 +55,7 @@ class Registration extends Component {
 
         this.setState( {
             isLoading: true,
-        } );
+        } )
 
         // Post request to backend
         fetch( '/users/signup', {
@@ -71,7 +70,8 @@ class Registration extends Component {
                 password: password,
                 // signUpMssg: signUpMssg,
             } ),
-        } ).then( res => res.json() )
+        } )
+            .then( res => res.json() )
             .then( json => {
                 console.log( 'json', json )
                 if ( json.success ) {
@@ -94,11 +94,6 @@ class Registration extends Component {
                 }
             } )
     }
-    // componentDidMount() {
-    //     this.setState( {
-    //         isLoading: false,
-    //     } )
-    // }
     render() {
         return (
             <React.Fragment>
@@ -127,9 +122,10 @@ class Registration extends Component {
                                         type="text"
                                         placeholder="Jane"
                                         name="firstName"
-                                        value={this.state.firstName} onChange={this.handleChange} />
+                                        value={this.state.firstName}
+                                        onChange={this.handleChange}
+                                    />
                                 </FormGroup>
-
                                 <FormGroup>
                                     <Input
                                         type="name"
@@ -139,7 +135,6 @@ class Registration extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </FormGroup>
-
                                 <FormGroup>
                                     <Input
                                         type="email"
@@ -149,7 +144,6 @@ class Registration extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </FormGroup>
-
                                 <FormGroup>
                                     <Input
                                         type="password"
@@ -159,21 +153,18 @@ class Registration extends Component {
                                         onChange={this.handleChange} />
                                 </FormGroup>
                             </Form>
-
                             <FormGroup className="">
                                 <span>
                                     Go Back To {" "}
                                     <Login />
                                 </span>
                             </FormGroup>
-
                             <Button
                                 type="submit"
                                 className="btn btn-outline mx-auto"
                                 color="light"
                                 // onClick={this.handleSubmit}
-                                onClick={this.toggleNested}
-                            >
+                                onClick={this.toggleNested}>
                                 SUBMIT
                                 </Button>
                             <Modal
@@ -183,15 +174,14 @@ class Registration extends Component {
                                 <ModalBody className="nested-modal">
                                     <p className="text-center">
                                         Registration completed!
-                                         {this.state.signUpMssg}
+                                    {this.state.signUpMssg}
                                     </p>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button
                                         color="success"
-                                        onClick={this.toggleAll}
-                                    // onClose={this.state.closeAll ? this.toggleAll : undefined}
-                                    >
+                                        // onClose={this.state.closeAll ? this.toggleAll : undefined}
+                                        onClick={this.toggleAll}>
                                         Close All
                                         </Button>
                                 </ModalFooter>

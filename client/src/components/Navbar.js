@@ -7,8 +7,6 @@ import Logout from './Logout'
 // import Registration from './Registration'
 import { UserContext } from '../context/UserContext'
 
-
-
 class AppNavbar extends Component {
     constructor( props ) {
         super( props )
@@ -19,7 +17,6 @@ class AppNavbar extends Component {
     }
     static contextType = UserContext
 
-
     toggle = () => {
         this.setState( {
             isOpen: !this.state.isOpen
@@ -28,28 +25,29 @@ class AppNavbar extends Component {
 
     render() {
         const { user } = this.context
-        // console.log( user.status, user, "user nav" )
-
         return (
             <Navbar className="container navbar-main" light expand="md">
                 <a href="/" className="navbar-brand">
-                    <img src={logo} alt={logo} className="logo"
-                    />
+                    <img src={logo} alt={logo} className="logo" />
                         filmkollen
                         </a>
                 <NavbarToggler
                     id="nav-toggle-icon"
-                    onClick={this.toggle} />
+                    onClick={this.toggle}
+                />
                 <Collapse
                     isOpen={this.state.isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
-                        
-                        <NavLink className="nav-link"
-                            exact to="/">Home</NavLink>
-                        <NavLink className="nav-link"
-                            to="/films">Films</NavLink>
-                        <NavLink className="nav-link"
-                            to="/festivals">Festivals</NavLink>
+                    <Nav
+                        className="ml-auto" navbar>
+                        <NavLink className="nav-link" exact to="/">
+                            Home
+                            </NavLink>
+                        <NavLink className="nav-link" to="/films">
+                            Films
+                            </NavLink>
+                        <NavLink className="nav-link" to="/festivals">
+                            Festivals
+                            </NavLink>
                         <NavLink to="/profile" className="nav-link">
                             {user && !user.status ? user.firstName + " " + user.lastName : "Profile"}
                         </NavLink>
@@ -68,14 +66,11 @@ class AppNavbar extends Component {
 
 export default AppNavbar
 
-
-
-/**              <NavItem>
-                                <NavLink className="nav-link"
-                                    to="/contact">Contact</NavLink>
-                            </NavItem>
-
-              const loginRegLink = (
+/**
+<NavItem>
+<NavLink className="nav-link" to="/contact">Contact</NavLink>
+</NavItem>
+const loginRegLink = (
             <ul className="mx-auto">
                 <li className="nav-item">
                     <Registration />
@@ -91,5 +86,5 @@ export default AppNavbar
                 </li>
             </ul>
         )
- {user ? userLink : loginRegLink}
-                            */
+{user ? userLink : loginRegLink}
+ */

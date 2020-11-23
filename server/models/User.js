@@ -30,8 +30,6 @@ let UserSchema = new Schema( {
 
 // , { toJSON: { virtuals: true } }
 
-
-
 UserSchema.methods.toJSON = function () {
     let obj = this.toObject()
     delete obj.password;

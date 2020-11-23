@@ -24,6 +24,3 @@ const AboutUs = () => {
 }
 
 export default AboutUs
-
-
-// href="/films/berlinale" 

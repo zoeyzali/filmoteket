@@ -43,6 +43,4 @@ lists.get( '/', async ( req, res ) => {
     res.status( 200 ).json( { lists, count: lists.length } )
 } )
 
-
-
 module.exports = lists

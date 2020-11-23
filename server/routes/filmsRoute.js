@@ -2,8 +2,6 @@ const express = require( "express" )
 const films = express.Router()
 const Film = require( '../models/Film' )
 const axios = require( 'axios' )
-// testing environment vars
-// console.log( `Logging your port at port ${port} ` )
 
 films.get( '/', async ( req, res ) => {
     let films = await Film.find( {} )
@@ -18,7 +16,6 @@ films.get( '/', async ( req, res ) => {
     }
 } )
 
-
 films.get( '/berlinale/', async ( req, res ) => {
     const response = await axios.get(
         `https://api.themoviedb.org/4/list/112863?api_key=${process.env.API_KEY}` )
@@ -29,13 +26,7 @@ films.get( '/berlinale/', async ( req, res ) => {
     res.status( 200 ).json( result )
 } )
 
-
-
 module.exports = films
-
-
-
-
 
 /**films.post('/users/favorites/new', db.addFavorite)
 films.get('/users/:id/favorites', db.getAllFavorites)

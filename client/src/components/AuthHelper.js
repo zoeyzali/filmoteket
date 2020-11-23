@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
 
-
 export const AuthHelper = ( props ) => {
-
     const { isAuthenticated } = useContext( UserContext )
     const [isLoading, setIsLoading] = useState( true )
 

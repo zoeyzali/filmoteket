@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container, Row } from 'reactstrap'
 import FilmsBerlinale from './FilmsBerlinale';
 import FilmsCannes from './FilmsCannes';
-// import FilmDetails from './FilmDetails';
 
 class FilmsParentContainer extends Component {
     render() {
@@ -14,9 +13,15 @@ class FilmsParentContainer extends Component {
                         <h4>For Now the last 25 years</h4>
                         <span>ca. 1994 till date</span>
                         <div className="films-logo-wrapper">
-                            <img src={require( '../images/berlinale.png' )} className="img-fluid-logo" alt="berlinale-logo"
+                            <img
+                                src={require( '../images/berlinale.png' )}
+                                className="img-fluid-logo"
+                                alt="berlinale-logo"
                             />
-                            <img src={require( '../images/festivalDeCannes.png' )} className="img-fluid-logo" alt="cannes-logo"
+                            <img
+                                src={require( '../images/festivalDeCannes.png' )}
+                                className="img-fluid-logo"
+                                alt="cannes-logo"
                             />
                         </div>
                     </div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import axios from 'axios'
 
-
 class ContactPage extends Component {
     constructor() {
         super();
@@ -16,10 +15,8 @@ class ContactPage extends Component {
         this.setState( { [e.target.name]: e.target.value } )
         // console.log(e.target.value)
     }
-
     handleSubmit = async ( e ) => {
         e.preventDefault()
-
         const { name, email, message } = this.state
         const form = await axios.post( 'contact/form', {
             name,
@@ -28,6 +25,7 @@ class ContactPage extends Component {
         } )
         console.log( form, "contacts form" )
     }
+
     render() {
         return <Container className="contact-page bg-light py-4 mt-4">
             <Row className="contact-wrapper">
@@ -46,7 +44,9 @@ class ContactPage extends Component {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label htmlFor="exampleEmail" className="bg-warning">Email</Label>
+                            <Label htmlFor="exampleEmail" className="bg-warning">
+                                Email
+                                </Label>
                             <Input
                                 type="email"
                                 name="email"
@@ -58,7 +58,8 @@ class ContactPage extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="exampleText" className="bg-warning">
-                                Message</Label>
+                                Message
+                                </Label>
                             <Input
                                 type="textarea"
                                 name="message"

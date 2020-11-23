@@ -4,7 +4,6 @@ import { UserContext } from '../context/UserContext'
 export const GetFavoritesList = () => {
     const [favorites, setFavorites] = useState( [] )
     const { user } = useContext( UserContext )
-    console.log( user.lists, "addtoFav" )
 
     useEffect( () => {
         const fetchFavorites = async () => {
@@ -28,7 +27,6 @@ export const GetFavoritesList = () => {
         try {
             const filteredFavs = favorites.filter( favorite => favorite._id !== id )
             const favToDelete = favorites.find( favorite => favorite._id === id )
-
             await fetch( `/users/favorites/${favToDelete._id}`, {
                 method: 'DELETE',
                 headers: {
@@ -36,14 +34,12 @@ export const GetFavoritesList = () => {
                 }
             } )
             setFavorites( [...filteredFavs] )
-
             // const result = await response.json()
             console.log( "reeemoved res" )
         } catch ( error ) {
             console.log( error )
         }
     }
-
 
     return (
         <div className="favorites__list">
@@ -55,12 +51,13 @@ export const GetFavoritesList = () => {
                             <span>{favorite.director}</span>
                             <img src={`/filmposters/${favorite.image}`}
                                 alt={favorite.title} className="img-fluid img-thumbnail b-none" />
-                            <button className="remove__fav" onClick={() => removeFavorited( favorite._id )}>Remove</button>
+                            <button className="remove__fav" onClick={() => removeFavorited( favorite._id )}>
+                                Remove
+                                </button>
                         </div>
                     )
                 } )
             }
-
         </div>
     )
 }

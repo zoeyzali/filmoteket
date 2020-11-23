@@ -22,5 +22,4 @@ const FilmsList = ( props ) => {
     )
 }
 
-
 export default FilmsList

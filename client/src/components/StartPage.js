@@ -36,7 +36,6 @@ class StartPage extends Component {
                 this.setState( {
                     films: [...data.results],
                     totalResults: data.total_results
-
                 } )
             } )
     }
@@ -82,37 +81,33 @@ class StartPage extends Component {
                         <CarouselSlider />
                     </Col>
                 </div>
-
                 <div className="container">
                     {  /** search result/content */}
-                    {this.state.currentFilm === null ?
-                        <Row className="mt-5 search-wrapper bg-light">
+                    {this.state.currentFilm === null
+                        ? <Row className="mt-5 search-wrapper bg-light">
                             <div className="search-content">
-                                <FilmsList viewFilmInfo={this.viewFilmInfo} films={this.state.films}
+                                <FilmsList
+                                    viewFilmInfo={this.viewFilmInfo}
+                                    films={this.state.films}
                                 />
                             </div>
-                        </Row> : <SearchDetails
+                        </Row>
+                        : <SearchDetails
                             currentFilm={this.state.currentFilm}
                             closeFilmInfo={this.closeFilmInfo}
                         />
                     }
                     {this.state.totalResults > 20 && this.state.currentFilm === null
-                        ?
-                        <Pagination
+                        ? <Pagination
                             pages={numberOfPages}
                             nextPage={this.nextPage}
                             currentPage={this.state.currentPage}
                         />
-                        :
-                        ""}
+                        : ""}
                 </div>
             </Container>
         )
     }
 }
 
-
 export default StartPage
-
-
-

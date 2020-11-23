@@ -35,5 +35,4 @@ let listSchema = new Schema( {
 
 } )
 
-
 module.exports = List = mongoose.model( 'List', listSchema )

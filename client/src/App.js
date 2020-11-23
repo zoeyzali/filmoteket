@@ -14,7 +14,6 @@ import PrivateRoute from './components/PrivateRoute'
 import { AuthHelper } from './components/AuthHelper'
 import { FilmDetails } from './components/FilmDetails'
 
-
 export default function App() {
     return (
         <Router>
@@ -47,9 +46,3 @@ export default function App() {
         </Router>
     )
 }
-
-
-
-//<Route path="/login" render={() => <LoginPage />} />
-//    <Route path="/login" component={LoginPage}
-// />

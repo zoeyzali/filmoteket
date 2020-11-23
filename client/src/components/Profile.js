@@ -6,7 +6,6 @@ import { tmdbKey, token, accountId } from '../utils/api-request'
 import { Link } from 'react-router-dom'
 import { GetFavoritesList } from './GetFavoritesList'
 
-
 class Profile extends Component {
     state = {
         favslist: [],
@@ -17,8 +16,7 @@ class Profile extends Component {
     static contextType = UserContext
 
     getAllMyLists = async () => {
-        const response = await fetch( `https://api.themoviedb.org/4/account/${accountId}/lists?page=1&api_key=${tmdbKey}
-`, {
+        const response = await fetch( `https://api.themoviedb.org/4/account/${accountId}/lists?page=1&api_key=${tmdbKey}`, {
             method: 'GET',
             headers: {
                 authorization: token
@@ -30,7 +28,6 @@ class Profile extends Component {
             allLists: result.results
         } )
     }
-
 
     getMyFavorites = async ( id ) => {
         this.state.listId = id
@@ -45,14 +42,12 @@ class Profile extends Component {
         // console.log( this.state.favslist, 'my favs' )
     }
 
-
     componentDidMount() {
         const { user } = this.context
         console.log( user, "profile-user" )
         this.getMyFavorites()
         this.getAllMyLists()
     }
-
 
     render() {
         // console.log( this.state, "state" )
@@ -86,7 +81,8 @@ class Profile extends Component {
                                             <div className="list__item_card">
                                                 <img src={`https://image.tmdb.org/t/p/w185/${film.poster_path}`}
                                                     className="img-fluid"
-                                                    alt={film.title} />
+                                                    alt={film.title}
+                                                />
                                                 <div className="list__item_content">
                                                     <span>{film.title}
                                                     </span>
@@ -97,18 +93,15 @@ class Profile extends Component {
                                 } )}
                             </ul>
                         </div>
-
                         <div className="col__2_wrapper">
                             <h2>All Lists</h2>
                             <p>Brap brap brap</p>
                             <ul className="col__2">
                                 {allLists.map( list => {
-                                    // console.log( list, "one list" )
                                     return (
                                         <Link to={`/lists/${list.id}/`} key={list.id}>
                                             <li>
-                                                <img src={`https://image.tmdb.org/t/p/w185/${list.backdrop_path}`
-                                                }
+                                                <img src={`https://image.tmdb.org/t/p/w185/${list.backdrop_path}`}
                                                     className="img- img-thumbnail"
                                                     alt={list.name}
                                                 />
@@ -128,7 +121,4 @@ class Profile extends Component {
     }
 }
 
-
 export default Profile
-
-

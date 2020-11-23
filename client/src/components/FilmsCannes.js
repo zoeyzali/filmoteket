@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom'
 import SearchDetails from './SearchFilmDetails'
 import { UserContext } from '../context/UserContext'
 
-
 /** Cannes list made by someone else
- * const response = await fetch( `https://api.themoviedb.org/4/list/${43069}?sort_by=primary_release_date.desc&page=1&api_key=${tmdbKey}
-*/
+ * const response = await fetch( `https://api.themoviedb.org/4/list/${43069}?sort_by=primary_release_date.desc&page=1&api_key=${tmdbKey}*/
 class FilmsCannes extends Component {
     constructor( props ) {
         super( props )
@@ -21,7 +19,6 @@ class FilmsCannes extends Component {
         this.films = require( '../json/films' )
     }
     static contextType = UserContext
-
 
     addTofavorite = async () => {
         const { user } = this.context
@@ -62,7 +59,6 @@ class FilmsCannes extends Component {
         }
     }
 
-
     viewFilmInfo = ( id ) => {
         const filteredFilm = this.films.filter( film => film.id === id )
         const newCurrentFilm = filteredFilm.length > 0 ? filteredFilm[0] : null
@@ -94,7 +90,6 @@ class FilmsCannes extends Component {
         return mappedCannes
     }
 
-
     render() {
         return (
             <>
@@ -102,13 +97,15 @@ class FilmsCannes extends Component {
                     {this.mapCannesFilms()}
                 </Row>
                 {
-                    this.state.currentFilm === null ? this.state.currentFilm : <SearchDetails
-                        currentFilm={this.state.currentFilm}
-                        closeFilmInfo={this.closeFilmInfo}
-                        addTofavorite={this.addTofavorite}
-                        mssg={this.state.mssg}
-                        removeFavorited={this.removeFavorited}
-                    />
+                    this.state.currentFilm === null
+                        ? this.state.currentFilm
+                        : <SearchDetails
+                            currentFilm={this.state.currentFilm}
+                            closeFilmInfo={this.closeFilmInfo}
+                            addTofavorite={this.addTofavorite}
+                            mssg={this.state.mssg}
+                            removeFavorited={this.removeFavorited}
+                        />
                 }
             </>
         )
@@ -116,4 +113,3 @@ class FilmsCannes extends Component {
 }
 
 export default FilmsCannes
-

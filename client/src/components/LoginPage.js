@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input } from 'reactstrap'
 import Registration from './Registration'
 
-
 class Login extends Component {
     constructor( props ) {
         super( props )
@@ -17,12 +16,9 @@ class Login extends Component {
         }
     }
 
-
-
     toggle = () => {
         this.setState( prevState => ( {
             modal: !prevState.modal
-
         } ) )
     }
 
@@ -62,7 +58,7 @@ class Login extends Component {
         } )
             .then( res => res.json() )
             .then( data => {
-                console.log( data, 'data login data' )
+                // console.log( data, 'data login data' )
                 this.setState( {
                     email: data.email,
                     password: data.password,
@@ -97,7 +93,6 @@ class Login extends Component {
         // this.props.history.push( `/profile` )
     }
 
-
     componentDidMount() {
         this.setState( {
             email: "",
@@ -115,9 +110,6 @@ class Login extends Component {
         const errorMssg = "Field cannot be empty"
         const confirmationMssg = "All good"
         const errorish = "Please double check email or password"
-
-        /**      */
-        // console.log( errorish, "errorish" )
         return (
             <React.Fragment>
                 <Button
@@ -186,7 +178,6 @@ class Login extends Component {
                                 <span>Not a member?</span>
                                 <Registration />
                             </FormGroup>
-
                             <Button type="submit"
                                 color="light"
                                 onClick={this.toggle}>
@@ -206,8 +197,5 @@ class Login extends Component {
         )
     }
 }
-
-
-
 
 export default Login

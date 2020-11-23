@@ -75,7 +75,8 @@ const CreateFestival = () => {
 
                     <FormGroup check>
                         <Label check>
-                            <Input type="checkbox" /> Check me out
+                            <Input type="checkbox" />
+                            Check me out
                 </Label>
                     </FormGroup>
                 </Form>

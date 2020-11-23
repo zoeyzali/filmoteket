@@ -5,7 +5,6 @@ import Pagination from './Pagination'
 import { tmdbKey } from '../utils/api-request'
 import SearchDetails from './SearchFilmDetails'
 
-
 class FilmsBerlinale extends Component {
     constructor( props ) {
         super( props )
@@ -92,15 +91,17 @@ class FilmsBerlinale extends Component {
                     {this.mapFilms()}
                 </Row>
                 <Row>
-                    {this.state.totalResults > 20 ?
-                        <Pagination
+                    {this.state.totalResults > 20
+                        ? <Pagination
                             pages={numberOfPages}
                             nextPage={this.nextPage}
-                            currentPage={this.state.currentPage} /> : ""}
+                            currentPage={this.state.currentPage}
+                        />
+                        : ""}
                 </Row>
-                {this.state.currentFilm === null ? this.state.currentFilm
-                    :
-                    <SearchDetails
+                {this.state.currentFilm === null
+                    ? this.state.currentFilm
+                    : <SearchDetails
                         currentFilm={this.state.currentFilm}
                         closeFilmInfo={this.closeFilmInfo}
                     />
@@ -111,6 +112,3 @@ class FilmsBerlinale extends Component {
 }
 
 export default FilmsBerlinale
-
-
-

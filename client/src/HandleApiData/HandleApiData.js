@@ -1,4 +1,3 @@
-
 const api_key = process.env.REACT_APP_API_KEY
 
 export const getBerlinaleFilms = () => {
@@ -19,5 +18,3 @@ export const pageTwoBerlinale = () => {
         } )
         .catch( err => console.log( err, 'error again page2' ) )
 }
-
-//Stranger things

@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react'
 
-
 export const UserContext = createContext()
 class UserContextProvider extends Component {
     state = {
@@ -12,7 +11,6 @@ class UserContextProvider extends Component {
         this.setState( {
             user: user ? user : user.status
         } )
-        // console.log( "user from isAuth Fn", user, user.status )
     }
 
     logoutUser = () => {
@@ -23,12 +21,11 @@ class UserContextProvider extends Component {
 
     render() {
         return (
-            <UserContext.Provider
-                value={{
-                    ...this.state,
-                    isAuthenticated: this.isAuthenticated,
-                    logoutUser: this.logoutUser
-                }}>
+            <UserContext.Provider value={{
+                ...this.state,
+                isAuthenticated: this.isAuthenticated,
+                logoutUser: this.logoutUser
+            }}>
                 {this.props.children}
             </UserContext.Provider>
         )
@@ -36,6 +33,4 @@ class UserContextProvider extends Component {
 }
 
 const UserConsumer = UserContext.Consumer
-
-
 export { UserContextProvider, UserConsumer } 
