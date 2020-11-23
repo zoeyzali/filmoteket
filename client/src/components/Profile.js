@@ -31,8 +31,7 @@ class Profile extends Component {
 
     getMyFavorites = async ( id ) => {
         this.state.listId = id
-        const response = await fetch( `https://api.themoviedb.org/4/list/139797?page=1&api_key=${tmdbKey}
-`)
+        const response = await fetch( `https://api.themoviedb.org/4/list/139797?page=1&api_key=${tmdbKey}` )
         const result = await response.json()
         // console.log( result, "favslist res" )
         this.setState( {

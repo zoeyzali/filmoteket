@@ -15,13 +15,12 @@ class FilmsBerlinale extends Component {
             currentFilm: null,
         }
     }
-
     getFilmsBer = () => {
         fetch( `https://api.themoviedb.org/4/list/112863?api_key=${tmdbKey}` )
             .then( data => data.json() )
             .then( data => {
                 this.setState( {
-                    filmsBer: [...data.results],
+                    filmsBer: data.results,
                     totalResults: data.total_results,
                 }, () => {
                     if ( this.state.filmsBer.length > 1 ) {
@@ -30,46 +29,39 @@ class FilmsBerlinale extends Component {
                 } )
             } )
     }
-
     nextPage = ( pageNumber ) => {
         fetch( `https://api.themoviedb.org/4/list/112863?api_key=${tmdbKey}&page=${pageNumber}` )
             .then( data => data.json() )
             .then( data => {
                 this.setState( {
-                    filmsBer: [...data.results],
+                    filmsBer: data.results,
                     currentPage: pageNumber,
                 } )
             } )
     }
-
     viewFilmInfo = ( id ) => {
         const filteredFilm = this.state.filmsBer.filter( film => film.id === id )
         const newCurrentFilm = filteredFilm.length > 0 ? filteredFilm[0] : null
         this.setState( { currentFilm: newCurrentFilm } )
         // console.log( newCurrentFilm, "newcurrentfilm" )
     }
-
     closeFilmInfo = () => {
         this.setState( { currentFilm: null } )
     }
-
     mapFilms = () => {
         const mappedFilms = this.state.filmsBer.map( ( film, id ) => {
             return (
                 <Col key={id} xs={4} sm={4} md={2} lg={2} className="films-row">
                     <Link to={`/movies/berlinale/${film.id}`} onClick={() => this.viewFilmInfo( film.id )}>
-                        {film.poster_path !== null ?
-                            <img src={`https://image.tmdb.org/t/p/w342/${film.poster_path}`
+                        {film.poster_path !== null
+                            ? <img src={`https://image.tmdb.org/t/p/w342/${film.poster_path}`
                             } className="img-fluid posters"
                                 alt={film.title} />
                             : <img
                                 src={`https://dummyimage.com/w185/222/fff.png&text=No+images`}
                                 className="img-fluid posters"
                                 alt={film.title}
-                                style={{
-                                    width: "100%",
-                                    height: "100%"
-                                }}
+                                style={{ width: "100%", height: "100%" }}
                             />
                         }
                     </Link>
@@ -78,7 +70,6 @@ class FilmsBerlinale extends Component {
         } )
         return mappedFilms
     }
-
     componentDidMount() {
         this.getFilmsBer()
     }

@@ -72,7 +72,7 @@ class StartPage extends Component {
             <Container className="start-page">
                 <div className="intro-section">
                     <Col xs="12" md="12" lg="12"
-                        className="container">
+                        className="">
                         <AboutUs />
                         <SearchBox
                             handleSubmit={this.handleSubmit}
@@ -81,10 +81,10 @@ class StartPage extends Component {
                         <CarouselSlider />
                     </Col>
                 </div>
-                <div className="container">
+                <div className="">
                     {  /** search result/content */}
                     {this.state.currentFilm === null
-                        ? <Row className="mt-5 search-wrapper bg-light">
+                        ? <Row className="mt-2 search-wrapper bg-light">
                             <div className="search-content">
                                 <FilmsList
                                     viewFilmInfo={this.viewFilmInfo}

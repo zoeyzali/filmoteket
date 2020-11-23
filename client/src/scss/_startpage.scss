@@ -1,23 +1,23 @@
 .start-page {
   width: 100%;
   height: auto;
-  padding: 0.2rem 1rem 1rem;
-  margin-top: -0.4rem;
+  margin-top: -1.5rem;
+  // padding: 0.2rem 1rem 1rem;
 
   .jumbotron {
-    // width: 100%;
-    // height: auto;
     background-color: #fff;
     background-image: url('../images/festivalDeCannes.png'), url('../images/berlinale.png');
     background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
     color: $main-red;
     font-family: 'Titillium Web', sans-serif;
     font-weight: 900;
-    padding: 1rem;
     text-align: center;
 
-
+    // width: 100%;
+    // height: auto;
+    // padding: 1rem;
     h1 {
       font-size: 5rem;
       letter-spacing: 0.2rem;
@@ -36,7 +36,7 @@
       font-size: 1.5rem;
       letter-spacing: 0.3rem;
       outline: none !important;
-      margin-top: 1.5rem;
+      // margin-top: 1.5rem;
 
       &:hover {
         background-color: snow;
@@ -45,26 +45,26 @@
   }
 
   form.search_input .search-box.form-control {
-    margin-top: 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     text-transform: capitalize;
     font-size: 15px;
-    padding: 10px 0;
     border: 1px #333 solid;
     text-align: center;
     outline: none !important;
+    // margin-top: 1rem;
+    // padding: 10px 0;
 
     &::placeholder {
-      letter-spacing: 0.25rem;
+      letter-spacing: 0.15rem;
       text-align: center;
     }
   }
 }
 
 .carousel-container {
-  width: 100%;
   // max-width: 600px;
+  width: 100%;
   margin: 20px auto 15px;
   box-shadow: 0 10px 8px 10px #eee;
 
@@ -82,7 +82,7 @@
       height: 100%;
       mask-image: cross-fade();
       border-radius: 5px;
-      filter: contrast(150%);
+      filter: contrast(140%);
     }
 
     .slick-next::before {
@@ -99,25 +99,19 @@
     }
   }
 
-
-
-
   .search-content {
     background-color: $main-red;
     display: inline;
   }
 
 
-
-
-  @media (min-width: 320px) and (max-width: 508px) {
+  @media screen and (min-width: 320px) and (max-width: 600px) {
     h1 {
       font-size: 3rem;
       word-wrap: break-word;
     }
   }
 }
-
 
 //pagination links
 .pagination-wrapper {
@@ -160,7 +154,7 @@
   }
 }
 
-@media (min-width: 600px) {
+@media screen and (min-width: 600px) {
   .carousel-container {
     max-width: 900px;
     width: 100%;

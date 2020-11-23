@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import Login from './LoginPage'
 import { NavLink } from 'react-router-dom'
+
 class Registration extends Component {
     constructor( props ) {
         super( props )
@@ -99,8 +100,7 @@ class Registration extends Component {
             <React.Fragment>
                 <NavLink to=""
                     onClick={this.toggle}
-                    className="reg-nav-link nav-link"
-                >
+                    className="reg-nav-link nav-link">
                     Sign Up
                     </NavLink>
                 <Modal
@@ -115,8 +115,7 @@ class Registration extends Component {
                     </ModalHeader>
                     <ModalBody>
                         <div className="text-center p-4">
-                            <Form
-                            >
+                            <Form>
                                 <FormGroup>
                                     <Input
                                         type="text"
@@ -150,7 +149,8 @@ class Registration extends Component {
                                         placeholder="don't tell"
                                         name="password"
                                         value={this.state.password}
-                                        onChange={this.handleChange} />
+                                        onChange={this.handleChange}
+                                    />
                                 </FormGroup>
                             </Form>
                             <FormGroup className="">
@@ -169,8 +169,7 @@ class Registration extends Component {
                                 </Button>
                             <Modal
                                 isOpen={this.state.nestedModal}
-                                onClick={this.handleSubmit}
-                            >
+                                onClick={this.handleSubmit}>
                                 <ModalBody className="nested-modal">
                                     <p className="text-center">
                                         Registration completed!

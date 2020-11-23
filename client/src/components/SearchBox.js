@@ -5,7 +5,7 @@ const SearchBox = ( props ) => {
     return (
         <Row>
             <Form onSubmit={props.handleSubmit}
-                className="col-7 mx-auto search_input">
+                className="col-12 mx-auto search_input">
                 <Input
                     className="search-box"
                     type="text"

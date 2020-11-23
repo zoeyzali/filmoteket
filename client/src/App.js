@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -19,7 +19,7 @@ export default function App() {
         <Router>
             <AuthHelper>
                 <Navbar />
-                <div className="container">
+                <Fragment>
                     <Switch>
                         <Route exact path="/" component={StartPage}
                         />
@@ -40,8 +40,8 @@ export default function App() {
                         <PrivateRoute path="/profile" component={Profile}
                         />
                     </Switch>
-                    <Footer />
-                </div>
+                </Fragment>
+                <Footer />
             </AuthHelper>
         </Router>
     )

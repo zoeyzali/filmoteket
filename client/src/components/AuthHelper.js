@@ -14,7 +14,6 @@ export const AuthHelper = ( props ) => {
                 status: response.status
             }
             if ( result.user ) {
-                console.log( result, "result.user" )
                 isAuthenticated( result.user )
             } else {
                 isAuthenticated( result.status )
@@ -26,20 +25,18 @@ export const AuthHelper = ( props ) => {
             setIsLoading( false )
         }
     }
-
     useEffect( () => {
         checkLogin()
         // eslint-disable-next-line 
     }, [] )
 
-
-
     if ( isLoading )
         return (
-            <div className="loading pt-6 bg-light">
+            <div className="loading pt-6">
                 <p className="text-center mt-3 display-2 lead">Loading...</p>
             </div>
         )
+
     return (
         <div>
             {props.children}
