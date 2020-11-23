@@ -9,6 +9,7 @@ const Logout = () => {
         const response = await fetch( '/users/logout' )
         if ( response.status === 200 ) {
             console.log( response, "user loggedout" )
+            localStorage.removeItem( 'user' )
         }
         window.location.replace( '/' )
     }

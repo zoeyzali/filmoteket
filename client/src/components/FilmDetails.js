@@ -6,7 +6,7 @@ export const FilmDetails = ( { match } ) => {
     const { params: { id } } = match
     const [film, setFilm] = useState()
     const [cast, setCast] = useState( [] )
-    const [toggleCast, setToggleCast] = useState( false )
+    // const [toggleCast, setToggleCast] = useState( false )
 
     useEffect( () => {
         const getFilmDetails = async () => {
@@ -21,9 +21,9 @@ export const FilmDetails = ( { match } ) => {
     }, [id] )
     console.log( film, "film details" )
 
-    const toggleFullCast = () => {
-        setToggleCast( !toggleCast )
-    }
+    // const toggleFullCast = () => {
+    //     setToggleCast( !toggleCast )
+    // }
 
     return (
         <Container className="details__wrapper mx-auto">

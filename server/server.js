@@ -1,6 +1,10 @@
 const dotenv = require( 'dotenv' )
 dotenv.config()
 // console.log( `My test variable is ${process.env.TEST_VAR} ` )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62e9490aa586cd5a392b896e952a634cf04283e5
 const express = require( 'express' )
 const app = express()
 const mongoose = require( 'mongoose' )
@@ -64,4 +68,8 @@ app.use( '/lists', List )
 server.listen( Port, () => {
     console.log( `Server running at ${Port}` )
 } )
+<<<<<<< HEAD
 // module.exports = app
+=======
+
+>>>>>>> 62e9490aa586cd5a392b896e952a634cf04283e5
