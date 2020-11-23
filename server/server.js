@@ -1,10 +1,6 @@
 const dotenv = require( 'dotenv' )
 dotenv.config()
 // console.log( `My test variable is ${process.env.TEST_VAR} ` )
-<<<<<<< HEAD
-=======
-
->>>>>>> 62e9490aa586cd5a392b896e952a634cf04283e5
 const express = require( 'express' )
 const app = express()
 const mongoose = require( 'mongoose' )
@@ -27,7 +23,6 @@ app.get( '/', ( req, res ) => {
     let serverText = `<h1>filmoteket<h1/>`
     res.send( serverText )
 } )
-
 /** for later use */
 // if ( process.env.NODE_ENV === 'production' ) {
 //     app.use( express.static( 'client/build' ) )
@@ -68,8 +63,4 @@ app.use( '/lists', List )
 server.listen( Port, () => {
     console.log( `Server running at ${Port}` )
 } )
-<<<<<<< HEAD
 // module.exports = app
-=======
-
->>>>>>> 62e9490aa586cd5a392b896e952a634cf04283e5

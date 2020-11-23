@@ -52,7 +52,9 @@ export const GetFavoritesList = () => {
                             <span>{favorite.director}</span>
                             <img src={`/filmposters/${favorite.image}`}
                                 alt={favorite.title} className="img-fluid img-thumbnail" />
-                            <button className="remove__fav" onClick={() => removeFavorited( favorite._id )}>Remove</button>
+                            <button className="remove__fav" onClick={() => removeFavorited( favorite._id )}>
+                                Remove
+                                </button>
                         </div>
                     )
                 } )
